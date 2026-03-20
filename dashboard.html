@@ -1,0 +1,548 @@
+<!-- /*
+* Template Name: Append
+* Template Author: Shopzene
+* Template URI: https://shopezene.com/
+* License: https://creativecommons.org/licenses/by/3.0/
+*/ -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Shopzene">
+  <link rel="shortcut icon" href="favicon.png">
+
+  <meta name="description" content="" />
+  <meta name="keywords" content="bootstrap, bootstrap4" />
+
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+  <link rel="stylesheet" href="fonts/feather/style.css">
+  <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+  <link rel="stylesheet" href="css/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="css/aos.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <title>Shopezene - Dashboard</title>
+</head>
+<body>
+
+
+    <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close">
+          <span class="icofont-close js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+    
+    <div class="container">
+
+
+      <nav class="site-nav">
+        <div class="logo">
+          <a href="index.html" class="text-white">Shopezene<span class="text-black">.</span></a>
+        </div>
+        <div class="row align-items-center">
+          
+          
+          <div class="col-12 col-sm-12 col-lg-12 site-navigation text-center">
+            <ul class="js-clone-nav d-none d-lg-inline-block text-left site-menu">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="vip-levels.html">VIP Levels</a></li>
+              <li><a href="orders.html">Orders</a></li>
+              <li class="active"><a href="dashboard.html">Dashboard</a></li>
+              <li><a href="profile.html">Profile</a></li>
+              <li><a href="slack-integration.html">Slack</a></li>
+              <li><a href="how-it-works.html">How It Works</a></li>
+              <li><a href="deposit.html">Deposit</a></li>
+              <li><a href="withdrawal.html">Withdrawal</a></li>
+              <li><a href="faq.html">FAQ</a></li>
+            </ul>
+
+            <ul class="js-clone-nav d-none d-lg-inline-block text-left site-menu float-right menu-absolute">
+              <li class="cta-button"><a href="deposit.html">Get Started</a></li>
+              <li class="cta-button"><a href="login.html">Logout</a></li>
+            </ul>
+
+            <a href="#" class="burger light ml-auto site-menu-toggle js-menu-toggle d-block d-lg-none" data-toggle="collapse" data-target="#main-navbar">
+              <span></span>
+            </a>
+
+          </div>
+
+        </div>  
+      </nav> <!-- END nav -->
+
+    </div> <!-- END container -->
+
+
+    <div class="hero-slant overlay" data-stellar-background-ratio="0.5" style="background-image: url('images/hero-min.jpg')">
+
+      <div class="container">
+        <div class="row align-items-center justify-content-center">
+          <div class="col-lg-7 intro text-center">
+            <h1 class="text-white font-weight-bold mb-4" data-aos="fade-up" data-aos-delay="0">My Dashboard</h1>
+            <p class="text-white mb-4" data-aos="fade-up" data-aos-delay="100">Track your earnings and manage your account</p>
+            <p data-aos="fade-up" data-aos-delay="200"><a href="#" class="btn btn-primary">Get Started</a></p>
+            
+          
+          </div>
+          
+          
+        </div>
+
+        
+      </div>
+
+      <div class="slant" style="background-image: url('images/slant-grey.svg');"></div>
+    </div>
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <!-- Wallet Section -->
+          <div class="col-lg-8 mb-5">
+            <div class="card shadow-sm" data-aos="fade-up">
+              <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">My Wallet</h4>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-4 mb-4">
+                    <div class="text-center">
+                      <h5 class="text-muted">Current Balance</h5>
+                      <h2 class="text-primary">$1,234.56</h2>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mb-4">
+                    <div class="text-center">
+                      <h5 class="text-muted">Today's Earnings</h5>
+                      <h2 class="text-success">$45.20</h2>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mb-4">
+                    <div class="text-center">
+                      <h5 class="text-muted">Total Commission</h5>
+                      <h2 class="text-info">$3,456.78</h2>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="row mt-4">
+                  <div class="col-6">
+                    <a href="deposit.html" class="btn btn-success btn-lg btn-block">Deposit</a>
+                  </div>
+                  <div class="col-6">
+                    <a href="withdrawal.html" class="btn btn-warning btn-lg btn-block">Withdraw</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Quick Stats -->
+          <div class="col-lg-4 mb-5">
+            <div class="card shadow-sm" data-aos="fade-up" data-aos-delay="100">
+              <div class="card-header bg-info text-white">
+                <h5 class="mb-0">Quick Stats</h5>
+              </div>
+              <div class="card-body">
+                <div class="mb-3">
+                  <small class="text-muted">VIP Level</small>
+                  <div class="h6">VIP 2</div>
+                </div>
+                <div class="mb-3">
+                  <small class="text-muted">Commission Rate</small>
+                  <div class="h6">6%</div>
+                </div>
+                <div class="mb-3">
+                  <small class="text-muted">Orders Completed</small>
+                  <div class="h6">47</div>
+                </div>
+                <div class="mb-3">
+                  <small class="text-muted">Member Since</small>
+                  <div class="h6">Jan 15, 2024</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Recent Activity -->
+        <div class="row">
+          <div class="col-12">
+            <div class="card shadow-sm" data-aos="fade-up" data-aos-delay="200">
+              <div class="card-header">
+                <h5 class="mb-0">Recent Activity</h5>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                        <th>Amount</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>2024-03-18</td>
+                        <td><span class="badge badge-success">Order</span></td>
+                        <td>Amazon Order #1234</td>
+                        <td class="text-success">+$12.50</td>
+                      </tr>
+                      <tr>
+                        <td>2024-03-18</td>
+                        <td><span class="badge badge-success">Order</span></td>
+                        <td>Alibaba Order #1235</td>
+                        <td class="text-success">+$32.70</td>
+                      </tr>
+                      <tr>
+                        <td>2024-03-17</td>
+                        <td><span class="badge badge-info">Deposit</span></td>
+                        <td>Wallet Deposit</td>
+                        <td class="text-info">+$500.00</td>
+                      </tr>
+                      <tr>
+                        <td>2024-03-17</td>
+                        <td><span class="badge badge-warning">Withdrawal</span></td>
+                        <td>Bank Transfer</td>
+                        <td class="text-warning">-$200.00</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+                    <label for="message">Message</label>
+                    <textarea name="message" id="message" cols="30" rows="5" class="form-control"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <input type="submit" value="Post Comment" class="btn btn-primary btn-md">
+                  </div>
+
+                </form>
+              </div>
+            </div>
+            
+
+        </article>
+
+        <div class="col-md-12 col-lg-1 order-lg-1">
+          <div class="share sticky-top">
+            <h3>Share</h3>
+            <ul class="list-unstyled share-article">
+              <li><a href="#"><span class="icon-facebook"></span></a></li>
+              <li><a href="#"><span class="icon-twitter"></span></a></li>
+              <li><a href="#"><span class="icon-pinterest"></span></a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-3 mb-5 mb-lg-0 order-lg-3">
+
+          <div class="mb-4">
+            <a href="https://vimeo.com/342333493" data-fancybox class="video-wrap">
+              <span class="play-wrap"><span class="icon-play"></span></span>
+              <img src="images/img_h_5-min.jpg" alt="Image" class="img-fluid rounded">
+            </a>
+          </div>  
+
+          <div class="share floating-block sticky-top">
+            
+              <h2 class="mb-3 text-black">Subscribe to Newsletter</h2>
+              <p>Get weekly tips and strategies to maximize your Shopzene earnings.</p>
+              <form action="#">
+                <input type="email" class="form-control mb-2" placeholder="Enter email">
+                <input type="submit" value="Subscribe" class="btn btn-primary btn-block">
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+        
+    
+    <div class="site-section overlay site-cover-2" style="background-image: url('images/img_v_3-min.jpg')">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-7 mx-auto text-center">
+            <h2 class="text-white mb-4">Maximize Your Earnings</h2>
+            <p class="mb-0"><a href="earnings.html" rel="noopener" class="btn btn-primary">Calculate Earnings</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+     <div class="site-footer">
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col-lg-4">
+            <div class="widget">
+              <h3>About Shopzene</h3>
+              <p>Your trusted platform for order processing and daily earnings. Join thousands of members earning consistent income with our proven VIP system.</p>
+            </div>
+            <div class="widget">
+              <h3>Connect with us</h3>
+              <ul class="social list-unstyled">
+                <li><a href="#"><span class="icon-facebook"></span></a></li>
+                <li><a href="#"><span class="icon-twitter"></span></a></li>
+                <li><a href="#"><span class="icon-instagram"></span></a></li>
+                <li><a href="#"><span class="icon-dribbble"></span></a></li>
+                <li><a href="#"><span class="icon-linkedin"></span></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="row">
+              <div class="col-12">
+                <div class="widget">
+                  <h3>Navigations</h3>
+                </div>
+              </div>
+              <div class="col-6 col-sm-6 col-md-4">
+                <div class="widget">
+                  <ul class="links list-unstyled">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Work</a></li>
+                    <li><a href="#">Process</a></li>
+                    <li><a href="#">About Us</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-6 col-sm-6 col-md-4">
+                <div class="widget">
+                  <ul class="links list-unstyled">
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Support</a></li>
+                    <li><a href="#">Privacy</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-6 col-sm-6 col-md-4">
+                <div class="widget">
+                  <ul class="links list-unstyled">
+                    <li><a href="privacy.html">Privacy</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="earnings.html">Earnings Calculator</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row justify-content-center text-center copyright">
+          <div class="col-md-8">
+            <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script>. All Rights Reserved. &mdash; Designed with love by <a href="https://shopezene.com">Shopzene</a>
+            </p> </br> 
+            <p> Dsitributed by <a href="https://themewagon.com">themewagon</a> </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <div id="overlayer"></div>
+    <div class="loader">
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script src="js/jquery-migrate-3.0.0.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/aos.js"></script>
+    <script src="js/imagesloaded.pkgd.js"></script>
+    <script src="js/isotope.pkgd.min.js"></script>
+    <script src="js/jquery.animateNumber.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.fancybox.min.js"></script>
+    <script src="js/custom.js"></script>
+
+    <script>
+      // Dashboard real-time updates
+      let currentBalance = 0;
+      let todayEarnings = 0;
+      let totalCommission = 0;
+      let currentVIP = 1;
+      let completedOrders = 0;
+
+      // Load data from localStorage
+      function loadDashboardData() {
+        currentBalance = parseFloat(localStorage.getItem('shopezene_balance') || '0');
+        todayEarnings = parseFloat(localStorage.getItem('shopezene_today_earnings') || '0');
+        totalCommission = parseFloat(localStorage.getItem('shopezene_total_commission') || '0');
+        currentVIP = parseInt(localStorage.getItem('shopezene_vip') || '1');
+        completedOrders = parseInt(localStorage.getItem('shopezene_completed_orders') || '0');
+        
+        updateDashboardDisplay();
+      }
+
+      // Update dashboard display
+      function updateDashboardDisplay() {
+        // Update wallet section
+        document.querySelector('.text-primary').textContent = `$${currentBalance.toFixed(2)}`;
+        document.querySelector('.text-success').textContent = `$${todayEarnings.toFixed(2)}`;
+        document.querySelector('.text-info').textContent = `$${totalCommission.toFixed(2)}`;
+        
+        // Update stats section
+        document.querySelector('.h6').textContent = `VIP ${currentVIP}`;
+        document.querySelectorAll('.h6')[1].textContent = `${currentVIP * 2 + 2}%`;
+        document.querySelectorAll('.h6')[2].textContent = completedOrders.toString();
+        document.querySelectorAll('.h6')[3].textContent = new Date().toLocaleDateString();
+        
+        // Update recent activity table
+        updateActivityTable();
+      }
+
+      // Update activity table with real data
+      function updateActivityTable() {
+        const earningsHistory = JSON.parse(localStorage.getItem('shopezene_earnings') || '[]');
+        const tbody = document.querySelector('tbody');
+        
+        if (tbody) {
+          tbody.innerHTML = '';
+          
+          // Get last 5 activities
+          const recentActivities = [];
+          earningsHistory.slice(-5).reverse().forEach(earning => {
+            recentActivities.push({
+              date: earning.date,
+              type: '<span class="badge badge-success">Order</span>',
+              description: 'Order Completed',
+              amount: `<span class="text-success">+$${earning.amount.toFixed(2)}</span>`
+            });
+          });
+          
+          // Add deposit/withdrawal activities if they exist
+          const deposits = JSON.parse(localStorage.getItem('shopezene_deposits') || '[]');
+          const withdrawals = JSON.parse(localStorage.getItem('shopezene_withdrawals') || '[]');
+          
+          deposits.slice(-3).reverse().forEach(deposit => {
+            recentActivities.push({
+              date: deposit.date,
+              type: '<span class="badge badge-info">Deposit</span>',
+              description: 'Wallet Deposit',
+              amount: `<span class="text-info">+$${deposit.amount.toFixed(2)}</span>`
+            });
+          });
+          
+          withdrawals.slice(-3).reverse().forEach(withdrawal => {
+            recentActivities.push({
+              date: withdrawal.date,
+              type: '<span class="badge badge-warning">Withdrawal</span>',
+              description: 'Bank Transfer',
+              amount: `<span class="text-warning">-$${withdrawal.amount.toFixed(2)}</span>`
+            });
+          });
+          
+          // Sort by date and display
+          recentActivities.sort((a, b) => new Date(b.date) - new Date(a.date));
+          recentActivities.slice(0, 5).forEach(activity => {
+            const row = tbody.insertRow();
+            row.innerHTML = `
+              <td>${activity.date}</td>
+              <td>${activity.type}</td>
+              <td>${activity.description}</td>
+              <td>${activity.amount}</td>
+            `;
+          });
+        }
+      }
+
+      // Listen for balance updates from orders page
+      window.addEventListener('balanceUpdated', (e) => {
+        const { balance: newBalance, todayEarnings: newTodayEarnings } = e.detail;
+        
+        currentBalance = newBalance;
+        todayEarnings = newTodayEarnings;
+        
+        // Update total commission
+        totalCommission += newTodayEarnings;
+        localStorage.setItem('shopezene_total_commission', totalCommission.toString());
+        
+        // Update completed orders count
+        completedOrders = 25 - parseInt(localStorage.getItem('shopezene_remaining') || '25');
+        localStorage.setItem('shopezene_completed_orders', completedOrders.toString());
+        
+        updateDashboardDisplay();
+        
+        // Show notification
+        showNotification(`Balance updated: +$${newTodayEarnings.toFixed(2)} today`);
+      });
+
+      // Notification system
+      function showNotification(message) {
+        const notification = document.createElement('div');
+        notification.className = 'alert alert-success alert-dismissible fade show position-fixed';
+        notification.style.cssText = 'top: 20px; right: 20px; z-index: 9999; min-width: 300px;';
+        notification.innerHTML = `
+          ${message}
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+        `;
+        
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+          notification.remove();
+        }, 3000);
+      }
+
+      // Initialize dashboard
+      document.addEventListener('DOMContentLoaded', () => {
+        loadDashboardData();
+        
+        // Auto-refresh every 5 seconds
+        setInterval(() => {
+          loadDashboardData();
+        }, 5000);
+      });
+    </script>
+    <script>
+      // Check if user is logged in
+      if (localStorage.getItem('userLoggedIn') !== 'true') {
+        window.location.href = 'login.html';
+      }
+      
+      // Check if user has received a locked order - restrict dashboard access
+      (function() {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+        if (currentUser) {
+          const userEmail = currentUser.email;
+          const lockedOrders = JSON.parse(localStorage.getItem('shopezene_locked_orders') || '[]');
+          const hasReceivedLocked = lockedOrders.some(o => o.userEmail === userEmail && o.status === 'received');
+          
+          if (hasReceivedLocked) {
+            // Show warning and disable withdrawal button
+            const withdrawBtn = document.querySelector('a[href="withdrawal.html"]');
+            if (withdrawBtn) {
+              withdrawBtn.style.opacity = '0.5';
+              withdrawBtn.style.pointerEvents = 'none';
+              withdrawBtn.innerHTML = '🚫 Withdrawals Locked';
+            }
+          }
+        }
+      })();
+    </script>
+  </html>

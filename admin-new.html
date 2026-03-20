@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopezene Admin</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    body { font-family: Arial, sans-serif; background: #f5f5f5; }
+    .sidebar { width: 250px; background: #2c3e50; min-height: 100vh; position: fixed; padding-top: 20px; }
+    .sidebar a { display: block; padding: 15px 20px; color: #ecf0f1; text-decoration: none; border-left: 3px solid transparent; }
+    .sidebar a:hover, .sidebar a.active { background: #34495e; border-left-color: #3498db; }
+    .main-content { margin-left: 250px; padding: 30px; }
+    .card { border: none; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-bottom: 20px; }
+    .btn-primary { background: #3498db; border: none; }
+    .btn-primary:hover { background: #2980b9; }
+    .btn-success { background: #27ae60; border: none; }
+    .btn-danger { background: #e74c3c; border: none; }
+    .stat-card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .stat-icon { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-right: 15px; }
+    .bg-success { background: #d4edda; color: #155724; }
+    .bg-warning { background: #fff3cd; color: #856404; }
+    .bg-info { background: #d1ecf1; color: #0c5460; }
+  </style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+  <h4 style="color: white; padding: 0 20px 20px; border-bottom: 1px solid #34495e;">
+    <i class="fas fa-cog"></i> Admin Panel
+  </h4>
+  <a href="#" onclick="showPage('dashboard')" id="nav-dashboard" class="active">
+    <i class="fas fa-tachometer-alt"></i> Dashboard
+  </a>
+  <a href="#" onclick="showPage('addDeduct')" id="nav-addDeduct">
+    <i class="fas fa-plus-circle"></i> Add/Deduct Balance
+  </a>
+  <a href="#" onclick="showPage('deposits')" id="nav-deposits">
+    <i class="fas fa-arrow-down"></i> Deposits
+  </a>
+  <a href="#" onclick="showPage('withdrawals')" id="nav-withdrawals">
+    <i class="fas fa-arrow-up"></i> Withdrawals
+  </a>
+  <a href="#" onclick="showPage('earnings')" id="nav-earnings">
+    <i class="fas fa-dollar-sign"></i> Earnings
+  </a>
+  <a href="#" onclick="showPage('orderControl')" id="nav-orderControl">
+    <i class="fas fa-lock"></i> Order Control
+  </a>
+  <a href="#" onclick="showPage('userManagement')" id="nav-userManagement">
+    <i class="fas fa-users"></i> User Management
+  </a>
+  <a href="#" onclick="showPage('walletSettings')" id="nav-walletSettings">
+    <i class="fas fa-wallet"></i> Wallet Settings
+  </a>
+</div>
+
+<!-- Main Content -->
+<div class="main-content">
+
+  <!-- Dashboard Page -->
+  <div id="page-dashboard">
+    <h2><i class="fas fa-tachometer-alt"></i> Dashboard</h2>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="stat-card d-flex align-items-center">
+          <div class="stat-icon bg-success"><i class="fas fa-wallet"></i></div>
+          <div>
+            <h6 class="mb-0">Total Balance</h6>
+            <h4 class="mb-0" id="totalBalance">$0</h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="stat-card d-flex align-items-center">
+          <div class="stat-icon bg-info"><i class="fas fa-users"></i></div>
+          <div>
+            <h6 class="mb-0">Total Users</h6>
+            <h4 class="mb-0" id="totalUsers">0</h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="stat-card d-flex align-items-center">
+          <div class="stat-icon bg-warning"><i class="fas fa-arrow-down"></i></div>
+          <div>
+            <h6 class="mb-0">Total Deposits</h6>
+            <h4 class="mb-0" id="totalDeposits">$0</h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="stat-card d-flex align-items-center">
+          <div class="stat-icon bg-success"><i class="fas fa-lock"></i></div>
+          <div>
+            <h6 class="mb-0">Locked Orders</h6>
+            <h4 class="mb-0" id="lockedCount">0</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="card mt-4 p-4">
+      <h5>Recent Activity</h5>
+      <table class="table" id="activityTable">
+        <thead><tr><th>Date</th><th>Type</th><th>Amount</th><th>Details</th></tr></thead>
+        <tbody id="activityBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Add/Deduct Balance Page -->
+  <div id="page-addDeduct" style="display: none;">
+    <h2><i class="fas fa-plus-circle"></i> Add/Deduct Balance</h2>
+    <div class="card p-4">
+      <div class="row">
+        <div class="col-md-6">
+          <button class="btn btn-success btn-lg btn-block mb-3" onclick="showBalanceModal('add')">
+            <i class="fas fa-plus"></i> Add Balance
+          </button>
+        </div>
+        <div class="col-md-6">
+          <button class="btn btn-danger btn-lg btn-block mb-3" onclick="showBalanceModal('deduct')">
+            <i class="fas fa-minus"></i> Deduct Balance
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Deposits Page -->
+  <div id="page-deposits" style="display: none;">
+    <h2><i class="fas fa-arrow-down"></i> Deposits</h2>
+    <div class="card p-4">
+      <table class="table" id="depositsTable">
+        <thead><tr><th>Date</th><th>User</th><th>Amount</th><th>Status</th></tr></thead>
+        <tbody id="depositsBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Withdrawals Page -->
+  <div id="page-withdrawals" style="display: none;">
+    <h2><i class="fas fa-arrow-up"></i> Withdrawals</h2>
+    <div class="card p-4">
+      <table class="table" id="withdrawalsTable">
+        <thead><tr><th>Date</th><th>User</th><th>Amount</th><th>Status</th></tr></thead>
+        <tbody id="withdrawalsBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Earnings Page -->
+  <div id="page-earnings" style="display: none;">
+    <h2><i class="fas fa-dollar-sign"></i> Earnings</h2>
+    <div class="card p-4">
+      <table class="table" id="earningsTable">
+        <thead><tr><th>Date</th><th>User</th><th>Amount</th><th>Order ID</th></tr></thead>
+        <tbody id="earningsBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Order Control Page -->
+  <div id="page-orderControl" style="display: none;">
+    <h2><i class="fas fa-lock"></i> Order Control</h2>
+    <p>Lock orders for specific users. When they grab orders, they'll see a lucky order.</p>
+    
+    <div class="card p-4">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5>Locked Orders</h5>
+        <button class="btn btn-primary" onclick="showLockModal()">
+          <i class="fas fa-plus"></i> Lock New Order
+        </button>
+      </div>
+      
+      <table class="table" id="lockedOrdersTable">
+        <thead>
+          <tr>
+            <th>User Email</th>
+            <th>Order #</th>
+            <th>Deposit</th>
+            <th>Profit</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="lockedOrdersBody">
+          <tr><td colspan="6" class="text-center text-muted">No locked orders</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- User Management Page -->
+  <div id="page-userManagement" style="display: none;">
+    <h2><i class="fas fa-users"></i> User Management</h2>
+    
+    <!-- Users List -->
+    <div class="card p-4 mb-4">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5>All Users</h5>
+        <div class="d-flex gap-2">
+          <input type="text" class="form-control" id="userSearch" placeholder="Search users..." style="width: 200px;">
+          <button class="btn btn-primary" onclick="loadUsers()">Refresh</button>
+        </div>
+      </div>
+      
+      <div class="table-responsive">
+        <table class="table" id="usersTable">
+          <thead>
+            <tr>
+              <th>User ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>VIP Level</th>
+              <th>Balance</th>
+              <th>Orders</th>
+              <th>Pending</th>
+              <th>Current</th>
+              <th>Progress</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="usersTableBody">
+            <tr><td colspan="11" class="text-center text-muted">Loading users...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wallet Settings Page -->
+  <div id="page-walletSettings" style="display: none;">
+    <h2><i class="fas fa-wallet"></i> Wallet Settings</h2>
+    
+    <!-- TRC-20 Wallet Settings -->
+    <div class="card p-4 mb-4">
+      <div class="card-header">
+        <h5 class="mb-0">TRC-20 Wallet Configuration</h5>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="form-group">
+              <label for="trc20Address">TRC-20 USDT Address</label>
+              <div class="input-group">
+                <input type="text" class="form-control" id="trc20Address" placeholder="Enter TRC-20 wallet address">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="button" onclick="copyAdminAddress()">
+                    <i class="fas fa-copy"></i> Copy
+                  </button>
+                </div>
+              </div>
+              <small class="form-text text-muted">This address will be displayed on the deposit page for all users</small>
+            </div>
+            
+            <div class="form-group">
+              <label for="walletPassword">Admin Password <span class="text-danger">*</span></label>
+              <input type="password" class="form-control" id="walletPassword" placeholder="Enter admin password to change address">
+              <small class="form-text text-danger">⚠️ Password required to change wallet address. This prevents unauthorized changes by other employees.</small>
+            </div>
+            
+            <div class="form-group">
+              <label for="trc20Network">Network</label>
+              <input type="text" class="form-control" id="trc20Network" value="TRC-20 (Tron)" readonly>
+              <small class="form-text text-muted">Network type for this wallet</small>
+            </div>
+            
+            <div class="form-group">
+              <label for="minDeposit">Minimum Deposit (USDT)</label>
+              <input type="number" class="form-control" id="minDeposit" min="1" value="30">
+              <small class="form-text text-muted">Minimum amount users can deposit</small>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <div class="alert alert-info">
+              <h6><i class="fas fa-info-circle"></i> Important</h6>
+              <ul class="mb-0">
+                <li>Changes will be reflected immediately on the deposit page</li>
+                <li>Make sure the address is valid before saving</li>
+                <li>Users will see the updated address without refreshing</li>
+                <li>Test the address after updating</li>
+              </ul>
+            </div>
+            
+            <div class="text-center">
+              <div class="qr-code-placeholder mb-3" style="border: 2px dashed #ddd; padding: 20px; border-radius: 8px;">
+                <i class="fas fa-qrcode fa-3x text-muted"></i>
+                <p class="text-muted mt-2">QR Code Preview</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="text-end">
+          <button class="btn btn-secondary" onclick="resetWalletSettings()">Reset to Default</button>
+          <button class="btn btn-primary" onclick="saveWalletSettings()">
+            <i class="fas fa-save"></i> Save Settings
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Current Settings Display -->
+    <div class="card p-4">
+      <div class="card-header">
+        <h5 class="mb-0">Current Live Settings</h5>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <h6>TRC-20 Address</h6>
+            <p class="font-monospace" id="currentTrc20Address">Loading...</p>
+          </div>
+          <div class="col-md-3">
+            <h6>Network</h6>
+            <p id="currentNetwork">Loading...</p>
+          </div>
+          <div class="col-md-3">
+            <h6>Min Deposit</h6>
+            <p id="currentMinDeposit">Loading...</p>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-12">
+            <h6>Last Updated</h6>
+            <p id="lastUpdated">Loading...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Balance Modal -->
+<div class="modal" id="balanceModal" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="balanceModalTitle">Add Balance</h5>
+        <button type="button" class="close" onclick="closeBalanceModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>User Email</label>
+          <select class="form-control" id="balanceUserEmail">
+            <option value="">Select user...</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Amount (USDT)</label>
+          <input type="number" class="form-control" id="balanceAmount" min="1" value="100">
+        </div>
+        <button class="btn btn-primary btn-block" onclick="processBalance()">
+          <i class="fas fa-check"></i> Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Lock Order Modal -->
+<div class="modal" id="lockModal" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Lock Order for User</h5>
+        <button type="button" class="close" onclick="closeLockModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Select User</label>
+          <select class="form-control" id="lockUserEmail">
+            <option value="">Choose a user...</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Lock Which Order? (1-25)</label>
+          <input type="number" class="form-control" id="lockOrderNumber" value="1" min="1" max="25">
+          <small class="text-muted">The lucky order will appear at this order number</small>
+        </div>
+        <div class="form-group">
+          <label>Required Deposit (USDT)</label>
+          <input type="number" class="form-control" id="lockDeposit" value="100" min="1">
+        </div>
+        <div class="form-group">
+          <label>Profit (USDT)</label>
+          <input type="number" class="form-control" id="lockProfit" value="50" min="1">
+        </div>
+        <div class="alert alert-info">
+          <strong>Total:</strong> <span id="lockTotal">150</span> USDT
+        </div>
+        <button class="btn btn-primary btn-block" onclick="lockOrder()">
+          <i class="fas fa-lock"></i> Lock Order
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- User Details Modal -->
+<div class="modal" id="userDetailsModal" style="display: none;">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">User Details</h5>
+        <button type="button" class="close" onclick="closeUserDetailsModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <!-- User Basic Info -->
+          <div class="col-md-4">
+            <div class="text-center mb-3">
+              <div class="avatar-circle" style="width: 80px; height: 80px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto; font-size: 32px; font-weight: bold; color: white;">
+                <span id="modalAvatar">U</span>
+              </div>
+              <h6 class="mt-2 mb-1" id="modalUserName">User Name</h6>
+              <small class="text-muted" id="modalUserEmail">email@example.com</small>
+            </div>
+            
+            <div class="list-group">
+              <div class="list-group-item">
+                <strong>User ID:</strong><br>
+                <span id="modalUserId">#123456</span>
+              </div>
+              <div class="list-group-item">
+                <strong>Phone:</strong><br>
+                <span id="modalUserPhone">+1234567890</span>
+              </div>
+              <div class="list-group-item">
+                <strong>VIP Level:</strong><br>
+                <span class="badge badge-primary" id="modalUserVIP">VIP 1</span>
+              </div>
+              <div class="list-group-item">
+                <strong>Status:</strong><br>
+                <span class="badge badge-success" id="modalUserStatus">Active</span>
+              </div>
+              <div class="list-group-item">
+                <strong>Member Since:</strong><br>
+                <span id="modalUserCreated">2024-01-01</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- User Financial Info -->
+          <div class="col-md-8">
+            <h6 class="mb-3">Financial Information</h6>
+            <div class="row mb-4">
+              <div class="col-md-6">
+                <div class="card bg-success text-white">
+                  <div class="card-body text-center">
+                    <h5 id="modalUserBalance">$0.00</h5>
+                    <small>Current Balance</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card bg-info text-white">
+                  <div class="card-body text-center">
+                    <h5 id="modalUserDeposits">$0.00</h5>
+                    <small>Total Deposits</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-4">
+              <div class="col-md-6">
+                <div class="card bg-warning text-white">
+                  <div class="card-body text-center">
+                    <h5 id="modalUserEarnings">$0.00</h5>
+                    <small>Total Earnings</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card bg-danger text-white">
+                  <div class="card-body text-center">
+                    <h5 id="modalUserWithdrawals">$0.00</h5>
+                    <small>Total Withdrawals</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Password Section -->
+            <h6 class="mb-3">Security Information</h6>
+            <div class="alert alert-info">
+              <strong>Password:</strong> <code id="modalUserPassword">••••••••</code>
+              <button class="btn btn-sm btn-outline-info ml-2" onclick="togglePasswordVisibility()">
+                <i class="fas fa-eye"></i> Show
+              </button>
+            </div>
+            
+            <!-- Order Statistics -->
+            <h6 class="mb-3">Order Statistics</h6>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="text-center">
+                  <h4 class="text-primary" id="modalUserOrders">0</h4>
+                  <small>Orders Completed</small>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="text-center">
+                  <h4 class="text-success" id="modalUserLockedOrders">0</h4>
+                  <small>Locked Orders</small>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="text-center">
+                  <h4 class="text-warning" id="modalUserPendingOrders">0</h4>
+                  <small>Pending Orders</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeUserDetailsModal()">Close</button>
+        <button type="button" class="btn btn-primary" onclick="editUser()">Edit User</button>
+        <button type="button" class="btn btn-warning" onclick="resetUserPassword()">Reset Password</button>
+        <button type="button" class="btn btn-danger" onclick="resetUserOrders()">Reset Orders</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Navigation
+  function showPage(pageId) {
+    const pages = ['dashboard', 'addDeduct', 'deposits', 'withdrawals', 'earnings', 'orderControl', 'userManagement', 'walletSettings'];
+    pages.forEach(p => {
+      document.getElementById('page-' + p).style.display = 'none';
+      document.getElementById('nav-' + p).classList.remove('active');
+    });
+    document.getElementById('page-' + pageId).style.display = 'block';
+    document.getElementById('nav-' + pageId).classList.add('active');
+    
+    if (pageId === 'dashboard') loadDashboard();
+    if (pageId === 'deposits') loadDeposits();
+    if (pageId === 'withdrawals') loadWithdrawals();
+    if (pageId === 'earnings') loadEarnings();
+    if (pageId === 'orderControl') loadLockedOrders();
+    if (pageId === 'userManagement') loadUsers();
+    if (pageId === 'walletSettings') loadWalletSettings();
+  }
+
+  // Load Dashboard
+  async function loadDashboard() {
+    const sharedData = await getSharedData();
+    const users = sharedData.users || [];
+    const deposits = sharedData.deposits || [];
+    const lockedOrders = JSON.parse(localStorage.getItem('shopezene_locked_orders') || '[]');
+    const balance = parseFloat(localStorage.getItem('shopezene_balance') || '0');
+    
+    document.getElementById('totalUsers').textContent = users.length;
+    document.getElementById('totalBalance').textContent = '$' + balance.toFixed(2);
+    document.getElementById('totalDeposits').textContent = '$' + deposits.reduce((s, d) => s + d.amount, 0).toFixed(2);
+    document.getElementById('lockedCount').textContent = lockedOrders.filter(o => o.status === 'active').length;
+    
+    // Load recent activity
+    let activities = [];
+    deposits.forEach(d => activities.push({ date: d.date, type: 'deposit', amount: d.amount, details: 'Wallet Deposit' }));
+    const withdrawals = JSON.parse(localStorage.getItem('shopezene_withdrawals') || '[]');
+    withdrawals.forEach(w => activities.push({ date: w.date, type: 'withdrawal', amount: w.amount, details: 'Bank Transfer' }));
+    const earnings = JSON.parse(localStorage.getItem('shopezene_earnings') || '[]');
+    earnings.forEach(e => activities.push({ date: e.date, type: 'earning', amount: e.amount, details: 'Order Completed' }));
+    activities.sort((a, b) => new Date(b.date) - new Date(a.date));
+    
+    const tbody = document.getElementById('activityBody');
+    tbody.innerHTML = activities.slice(0, 10).map(a => `
+      <tr>
+        <td>${a.date}</td>
+        <td><span class="badge badge-${a.type === 'deposit' ? 'success' : a.type === 'withdrawal' ? 'danger' : 'warning'}">${a.type}</span></td>
+        <td>$${a.amount.toFixed(2)}</td>
+        <td>${a.details}</td>
+      </tr>
+    `).join('');
+  }
+
+  // Load Deposits
+  function loadDeposits() {
+    const deposits = JSON.parse(localStorage.getItem('shopezene_deposits') || '[]');
+    const users = JSON.parse(localStorage.getItem('site_users') || '[]');
+    const tbody = document.getElementById('depositsBody');
+    if (deposits.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="4" class="text-center text-muted">No deposits yet</td></tr>';
+      return;
+    }
+    tbody.innerHTML = deposits.map(d => `
+      <tr>
+        <td>${d.date}</td>
+        <td>${d.email || 'Unknown'}</td>
+        <td>$${d.amount.toFixed(2)}</td>
+        <td><span class="badge badge-success">Completed</span></td>
+      </tr>
+    `).join('');
+  }
+
+  // Load Withdrawals
+  function loadWithdrawals() {
+    const withdrawals = JSON.parse(localStorage.getItem('shopezene_withdrawals') || '[]');
+    const tbody = document.getElementById('withdrawalsBody');
+    if (withdrawals.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="4" class="text-center text-muted">No withdrawals yet</td></tr>';
+      return;
+    }
+    tbody.innerHTML = withdrawals.map(w => `
+      <tr>
+        <td>${w.date}</td>
+        <td>${w.email || 'Unknown'}</td>
+        <td>$${w.amount.toFixed(2)}</td>
+        <td><span class="badge badge-success">Completed</span></td>
+      </tr>
+    `).join('');
+  }
+
+  // Load Earnings
+  function loadEarnings() {
+    const earnings = JSON.parse(localStorage.getItem('shopezene_earnings') || '[]');
+    const tbody = document.getElementById('earningsBody');
+    if (earnings.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="4" class="text-center text-muted">No earnings yet</td></tr>';
+      return;
+    }
+    tbody.innerHTML = earnings.map(e => `
+      <tr>
+        <td>${e.date}</td>
+        <td>${e.email || 'Unknown'}</td>
+        <td>$${e.amount.toFixed(2)}</td>
+        <td>#${Math.floor(Math.random() * 100000)}</td>
+      </tr>
+    `).join('');
+  }
+
+  // Balance Modal
+  let balanceAction = 'add';
+  function showBalanceModal(action) {
+    balanceAction = action;
+    document.getElementById('balanceModalTitle').textContent = action === 'add' ? 'Add Balance' : 'Deduct Balance';
+    loadUsersForSelect('balanceUserEmail');
+    document.getElementById('balanceModal').style.display = 'block';
+  }
+  
+  function closeBalanceModal() {
+    document.getElementById('balanceModal').style.display = 'none';
+  }
+  
+  async function updateBalance() {
+    const userEmail = document.getElementById('balanceUserEmail').value;
+    const amount = parseFloat(document.getElementById('balanceAmount').value);
+    const balanceAction = document.getElementById('balanceAction').value;
+    
+    if (!userEmail || isNaN(amount) || amount <= 0) { alert('Please enter a valid amount'); return; }
+    
+    const sharedData = await getSharedData();
+    const userIndex = sharedData.users.findIndex(u => u.email === userEmail);
+    
+    if (userIndex >= 0) {
+      if (balanceAction === 'add') {
+        sharedData.users[userIndex].balance = (parseFloat(sharedData.users[userIndex].balance || '0') + amount).toString();
+      } else {
+        sharedData.users[userIndex].balance = Math.max(0, (parseFloat(sharedData.users[userIndex].balance || '0') - amount)).toString();
+      }
+      await saveSharedData(sharedData);
+    }
+    
+    // Also update main balance
+    let mainBalance = parseFloat(localStorage.getItem('shopezene_balance') || '0');
+    if (balanceAction === 'add') {
+      mainBalance += amount;
+    } else {
+      mainBalance = Math.max(0, mainBalance - amount);
+    }
+    localStorage.setItem('shopezene_balance', mainBalance.toString());
+    
+    // Record transaction
+    let transactions = JSON.parse(localStorage.getItem('shopezene_deposits') || '[]');
+    if (balanceAction === 'add') {
+      transactions.push({ date: new Date().toLocaleString(), email: userEmail, amount, status: 'completed' });
+      localStorage.setItem('shopezene_deposits', JSON.stringify(transactions));
+    }
+    
+    closeBalanceModal();
+    loadDashboard();
+    alert(balanceAction === 'add' ? 'Balance added!' : 'Balance deducted!');
+  }
+
+  // Load users for select
+  function loadUsersForSelect(selectId) {
+    const users = JSON.parse(localStorage.getItem('site_users') || '[]');
+    const select = document.getElementById(selectId);
+    select.innerHTML = '<option value="">Select user...</option>';
+    users.forEach(user => {
+      select.innerHTML += `<option value="${user.email}">${user.email}</option>`;
+    });
+  }
+
+  // Order Control Functions
+  function showLockModal() {
+    loadUsersForSelect('lockUserEmail');
+    document.getElementById('lockModal').style.display = 'block';
+  }
+  
+  function closeLockModal() {
+    document.getElementById('lockModal').style.display = 'none';
+  }
+  
+  document.getElementById('lockDeposit').addEventListener('input', updateLockTotal);
+  document.getElementById('lockProfit').addEventListener('input', updateLockTotal);
+  
+  function updateLockTotal() {
+    const deposit = parseFloat(document.getElementById('lockDeposit').value) || 0;
+    const profit = parseFloat(document.getElementById('lockProfit').value) || 0;
+    document.getElementById('lockTotal').textContent = deposit + profit;
+  }
+  
+  function lockOrder() {
+    const userEmail = document.getElementById('lockUserEmail').value;
+    const orderNumber = parseInt(document.getElementById('lockOrderNumber').value);
+    const deposit = parseFloat(document.getElementById('lockDeposit').value);
+    const profit = parseFloat(document.getElementById('lockProfit').value);
+    
+    if (!userEmail) { alert('Please select a user'); return; }
+    
+    let lockedOrders = JSON.parse(localStorage.getItem('shopezene_locked_orders') || '[]');
+    const existingIndex = lockedOrders.findIndex(o => o.userEmail === userEmail);
+    
+    const orderData = {
+      userEmail,
+      orderNumber,
+      deposit,
+      profit,
+      total: deposit + profit,
+      status: 'active',
+      createdAt: new Date().toISOString()
+    };
+    
+    if (existingIndex >= 0) {
+      lockedOrders[existingIndex] = orderData;
+    } else {
+      lockedOrders.push(orderData);
+    }
+    
+    localStorage.setItem('shopezene_locked_orders', JSON.stringify(lockedOrders));
+    
+    // Trigger live sync event for user
+    const syncEvent = new CustomEvent('adminOrderLock', {
+      detail: {
+        userEmail: userEmail,
+        orderData: orderData,
+        timestamp: new Date().toISOString()
+      }
+    });
+    
+    // Store the event for live sync detection
+    const adminActions = JSON.parse(localStorage.getItem('admin_actions') || '[]');
+    adminActions.push({
+      type: 'order_lock',
+      userEmail: userEmail,
+      orderData: orderData,
+      timestamp: new Date().toISOString()
+    });
+    localStorage.setItem('admin_actions', JSON.stringify(adminActions));
+    
+    closeLockModal();
+    loadLockedOrders();
+    loadDashboard();
+    alert('Order locked for ' + userEmail + '\n\nUser will see the locked order silently without any notifications!');
+  }
+  
+  function loadLockedOrders() {
+    const lockedOrders = JSON.parse(localStorage.getItem('shopezene_locked_orders') || '[]');
+    const tbody = document.getElementById('lockedOrdersBody');
+    
+    if (lockedOrders.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="7" class="text-center text-muted">No locked orders</td></tr>';
+      return;
+    }
+    
+    tbody.innerHTML = lockedOrders.map(order => {
+      let badgeClass = 'secondary';
+      let statusText = order.status;
+      let actionButton = '';
+      
+      if (order.status === 'active') {
+        badgeClass = 'success';
+        statusText = 'Waiting for user';
+        actionButton = `<button class="btn btn-sm btn-danger" onclick="unlockOrder('${order.userEmail}')"><i class="fas fa-unlock"></i> Remove</button>`;
+      } else if (order.status === 'pending_payment') {
+        badgeClass = 'warning';
+        statusText = 'Pending Approval';
+        actionButton = `<button class="btn btn-sm btn-success" onclick="approveOrder('${order.userEmail}')"><i class="fas fa-check"></i> Approve</button>`;
+      } else if (order.status === 'received') {
+        badgeClass = 'info';
+        statusText = 'Completed';
+        actionButton = `<button class="btn btn-sm btn-secondary" disabled><i class="fas fa-check-circle"></i> Done</button>`;
+      }
+      
+      return `
+        <tr>
+          <td>${order.userEmail}</td>
+          <td>#${order.orderNumber}</td>
+          <td>${order.deposit}</td>
+          <td>${order.profit}</td>
+          <td>${order.total}</td>
+          <td><span class="badge badge-${badgeClass}">${statusText}</span></td>
+          <td>${actionButton}</td>
+        </tr>
+      `;
+    }).join('');
+  }
+  
+  function unlockOrder(userEmail) {
+    let lockedOrders = JSON.parse(localStorage.getItem('shopezene_locked_orders') || '[]');
+    lockedOrders = lockedOrders.filter(o => o.userEmail !== userEmail);
+    localStorage.setItem('shopezene_locked_orders', JSON.stringify(lockedOrders));
+    
+    // Trigger live sync event for user
+    const adminActions = JSON.parse(localStorage.getItem('admin_actions') || '[]');
+    adminActions.push({
+      type: 'order_unlock',
+      userEmail: userEmail,
+      timestamp: new Date().toISOString()
+    });
+    localStorage.setItem('admin_actions', JSON.stringify(adminActions));
+    
+    loadLockedOrders();
+    loadDashboard();
+    alert('Order removed for ' + userEmail + '\n\nUser will see the change silently without any notifications!');
+  }
+  
+  function approveOrder(userEmail) {
+    let lockedOrders = JSON.parse(localStorage.getItem('shopezene_locked_orders') || '[]');
+    const orderIndex = lockedOrders.findIndex(o => o.userEmail === userEmail && o.status === 'pending_payment');
+    
+    if (orderIndex >= 0) {
+      const order = lockedOrders[orderIndex];
+      
+      // Update status to received
+      lockedOrders[orderIndex].status = 'received';
+      lockedOrders[orderIndex].receivedAt = new Date().toISOString();
+      localStorage.setItem('shopezene_locked_orders', JSON.stringify(lockedOrders));
+      
+      // Add profit to user's balance
+      let currentBalance = parseFloat(localStorage.getItem('shopezene_balance') || '0');
+      currentBalance += order.profit;
+      localStorage.setItem('shopezene_balance', currentBalance.toString());
+      
+      // Update user's balance in users array
+      let users = JSON.parse(localStorage.getItem('site_users') || '[]');
+      const userIndex = users.findIndex(u => u.email === userEmail);
+      if (userIndex >= 0) {
+        users[userIndex].balance = (parseFloat(users[userIndex].balance || '0') + order.profit).toString();
+        localStorage.setItem('site_users', JSON.stringify(users));
+      }
+      
+      // Update user-specific remaining orders and current order number
+      let remainingOrders = parseInt(localStorage.getItem(`shopezene_remaining_${userEmail}`) || '25');
+      remainingOrders--;
+      localStorage.setItem(`shopezene_remaining_${userEmail}`, remainingOrders.toString());
+      
+      let currentOrderNum = parseInt(localStorage.getItem(`shopezene_current_order_${userEmail}`) || '1');
+      currentOrderNum++;
+      localStorage.setItem(`shopezene_current_order_${userEmail}`, currentOrderNum.toString());
+      
+      loadLockedOrders();
+      loadDashboard();
+      alert(`Order approved! ${order.profit} USDT profit added to ${userEmail}'s balance.`);
+    }
+  }
+
+  // Store the event for live sync detection
+  const adminActions = JSON.parse(localStorage.getItem('admin_actions') || '[]');
+  adminActions.push({
+    type: 'order_lock',
+    userEmail: userEmail,
+    orderData: orderData,
+    timestamp: new Date().toISOString()
+  });
+  localStorage.setItem('admin_actions', JSON.stringify(adminActions));
+
+  closeLockModal();
+  loadLockedOrders();
+  loadDashboard();
+  alert('Order locked for ' + userEmail + '\n\nUser will see the locked order silently without any notifications!');
+}
+
+function loadLockedOrders() {
+  const lockedOrders = JSON.parse(localStorage.getItem('shopezene_locked_orders') || '[]');
+  const tbody = document.getElementById('lockedOrdersBody');
+
+  if (lockedOrders.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="7" class="text-center text-muted">No locked orders</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = lockedOrders.map(order => {
+    let badgeClass = 'secondary';
+    let statusText = order.status;
+    let actionButton = '';
+
+    if (order.status === 'active') {
+      badgeClass = 'success';
+      statusText = 'Waiting for user';
+      actionButton = `<button class="btn btn-sm btn-danger" onclick="unlockOrder('${order.userEmail}')"><i class="fas fa-unlock"></i> Remove</button>`;
+    } else if (order.status === 'pending_payment') {
+      badgeClass = 'warning';
+      statusText = 'Pending Approval';
+      actionButton = `<button class="btn btn-sm btn-success" onclick="approveOrder('${order.userEmail}')"><i class="fas fa-check"></i> Approve</button>`;
+    } else if (order.status === 'received') {
+      badgeClass = 'info';
+      statusText = 'Completed';
+      actionButton = `<button class="btn btn-sm btn-secondary" disabled><i class="fas fa-check-circle"></i> Done</button>`;
+    }
+
+    return `
+      <tr>
+        <td>${order.userEmail}</td>
+        <td>#${order.orderNumber}</td>
+        <td>${order.deposit}</td>
+        <td>${order.profit}</td>
+        <td>${order.total}</td>
+        <td><span class="badge badge-${badgeClass}">${statusText}</span></td>
+        <td>${actionButton}</td>
+      </tr>
+    `;
+  }).join('');
+}
+
+function unlockOrder(userEmail) {
+  let lockedOrders = JSON.parse(localStorage.getItem('shopezene_locked_orders') || '[]');
+  lockedOrders = lockedOrders.filter(o => o.userEmail !== userEmail);
+  localStorage.setItem('shopezene_locked_orders', JSON.stringify(lockedOrders));
+
+  // Trigger live sync event for user
+  const adminActions = JSON.parse(localStorage.getItem('admin_actions') || '[]');
+  adminActions.push({
+    type: 'order_unlock',
+    userEmail: userEmail,
+    timestamp: new Date().toISOString()
+  });
+  localStorage.setItem('admin_actions', JSON.stringify(adminActions));
+
+  loadLockedOrders();
+  loadDashboard();
+  alert('Order removed for ' + userEmail + '\n\nUser will see the change silently without any notifications!');
+}
+
+function approveOrder(userEmail) {
+  let lockedOrders = JSON.parse(localStorage.getItem('shopezene_locked_orders') || '[]');
+  const orderIndex = lockedOrders.findIndex(o => o.userEmail === userEmail && o.status === 'pending_payment');
+
+  if (orderIndex >= 0) {
+    const order = lockedOrders[orderIndex];
+
+    // Update status to received
+    lockedOrders[orderIndex].status = 'received';
+    lockedOrders[orderIndex].receivedAt = new Date().toISOString();
+    localStorage.setItem('shopezene_locked_orders', JSON.stringify(lockedOrders));
+
+    // Add profit to user's balance
+    let currentBalance = parseFloat(localStorage.getItem('shopezene_balance') || '0');
+    currentBalance += order.profit;
+    localStorage.setItem('shopezene_balance', currentBalance.toString());
+
+    // Update user's balance in users array
+    let users = JSON.parse(localStorage.getItem('site_users') || '[]');
+    const userIndex = users.findIndex(u => u.email === userEmail);
+    if (userIndex >= 0) {
+      users[userIndex].balance = (parseFloat(users[userIndex].balance || '0') + order.profit).toString();
+      localStorage.setItem('site_users', JSON.stringify(users));
+    }
+
+    // Update user-specific remaining orders and current order number
+    let remainingOrders = parseInt(localStorage.getItem(`shopezene_remaining_${userEmail}`) || '25');
+    remainingOrders--;
+    localStorage.setItem(`shopezene_remaining_${userEmail}`, remainingOrders.toString());
+
+    let currentOrderNum = parseInt(localStorage.getItem(`shopezene_current_order_${userEmail}`) || '1');
+    currentOrderNum++;
+    localStorage.setItem(`shopezene_current_order_${userEmail}`, currentOrderNum.toString());
+
+    loadLockedOrders();
+    loadDashboard();
+    alert(`Order approved! ${order.profit} USDT profit added to ${userEmail}'s balance.`);
+  }
+}
+
+// User Management Functions
+let currentSelectedUser = null;
+let passwordVisible = false;
+let adminSyncInterval = null;
+
+// JSON Bin Shared Storage - Global User Management
+const JSON_BIN_ID = '69bdb87ac3097a1dd54421b8'; // Your actual bin ID
+const JSON_BIN_KEY = 'YOUR-MASTER-KEY-HERE'; // Replace with your actual master key
+const JSON_BIN_URL = `https://api.jsonbin.io/v3/b/${JSON_BIN_ID}`;
+
+async function getSharedData() {
+  try {
+    const response = await fetch(`${JSON_BIN_URL}/latest`, {
+      headers: {
+        'X-Master-Key': JSON_BIN_KEY
+      }
+    });
+    const data = await response.json();
+    return data.record || { users: [], deposits: [], withdrawals: [], earnings: [] };
+  } catch (error) {
+    console.log('JSON Bin error, using localStorage:', error);
+    // Fallback to localStorage if JSON Bin fails
+    return {
+      users: JSON.parse(localStorage.getItem('site_users') || '[]'),
+      deposits: JSON.parse(localStorage.getItem('shopezene_deposits') || '[]'),
+      withdrawals: JSON.parse(localStorage.getItem('shopezene_withdrawals') || '[]'),
+      earnings: JSON.parse(localStorage.getItem('shopezene_earnings') || '[]')
+    };
+  }
+}
+
+async function saveSharedData(data) {
+  try {
+    const response = await fetch(JSON_BIN_URL, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Master-Key': JSON_BIN_KEY,
+        'X-Bin-Versioning': 'false'
+      },
+      body: JSON.stringify(data)
+    });
+
+    if (response.ok) {
+      console.log('Admin data saved to JSON Bin successfully');
+    } else {
+      throw new Error('Failed to save to JSON Bin');
+    }
+  } catch (error) {
+    console.log('JSON Bin save error, using localStorage:', error);
+    // Fallback to localStorage
+    localStorage.setItem('site_users', JSON.stringify(data.users));
+    localStorage.setItem('shopezene_deposits', JSON.stringify(data.deposits));
+    localStorage.setItem('shopezene_withdrawals', JSON.stringify(data.withdrawals));
+    localStorage.setItem('shopezene_earnings', JSON.stringify(data.earnings));
+  }
+}
+
+let currentUser = null;
+
+function loadUsers() {
+  getSharedData().then(data => {
+    const users = data.users;
+    const deposits = data.deposits;
+    const withdrawals = data.withdrawals;
+    const earnings = data.earnings;
+    const earnings = JSON.parse(localStorage.getItem('shopezene_earnings') || '[]');
+    const lockedOrders = JSON.parse(localStorage.getItem('shopezene_locked_orders') || '[]');
+    
+    const tbody = document.getElementById('usersTableBody');
+    const searchTerm = document.getElementById('userSearch').value.toLowerCase();
+    
+    // Filter users based on search
+    const filteredUsers = users.filter(user => 
+      user.fullName.toLowerCase().includes(searchTerm) ||
+      user.email.toLowerCase().includes(searchTerm) ||
+      user.phone.toLowerCase().includes(searchTerm)
+    );
+    
+    if (filteredUsers.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="11" class="text-center text-muted">No users found</td></tr>';
+      return;
+    }
+    
+    tbody.innerHTML = filteredUsers.map(user => {
+      // Calculate comprehensive user statistics
+      const userDeposits = deposits.filter(d => d.email === user.email);
+      const userWithdrawals = withdrawals.filter(w => w.email === user.email);
+      const userEarnings = earnings.filter(e => e.email === user.email);
+      const userLockedOrders = lockedOrders.filter(o => o.userEmail === user.email);
+      
+      const totalDeposits = userDeposits.reduce((sum, d) => sum + d.amount, 0);
+      const totalWithdrawals = userWithdrawals.reduce((sum, w) => sum + w.amount, 0);
+      const totalEarnings = userEarnings.reduce((sum, e) => sum + e.amount, 0);
+      
+      // Order statistics
+      const ordersCompleted = userEarnings.length;
+      const pendingOrders = userLockedOrders.filter(o => o.status === 'pending_payment').length;
+      const activeLockedOrders = userLockedOrders.filter(o => o.status === 'active').length;
+      const totalLockedOrders = userLockedOrders.length;
+      
+      // Order progress
+      const currentOrderNum = parseInt(localStorage.getItem(`shopezene_current_order_${user.email}`) || '1');
+      const remainingOrders = parseInt(localStorage.getItem(`shopezene_remaining_${user.email}`) || '25');
+      const progressPercentage = Math.round(((currentOrderNum - 1) / 25) * 100);
+      
+      const statusBadge = user.email === 'admin@test.com' ? 
+        '<span class="badge badge-danger">Admin</span>' : 
+        '<span class="badge badge-success">Active</span>';
+      
+      // Progress bar color based on completion
+      let progressColor = 'bg-danger';
+      if (progressPercentage >= 75) progressColor = 'bg-success';
+      else if (progressPercentage >= 50) progressColor = 'bg-info';
+      else if (progressPercentage >= 25) progressColor = 'bg-warning';
+      
+      return `
+        <tr>
+          <td>#${user.id}</td>
+          <td>${user.fullName}</td>
+          <td>${user.email}</td>
+          <td>${user.phone}</td>
+          <td><span class="badge badge-primary">${user.vipLevel || 'VIP 1'}</span></td>
+          <td>$${(user.balance || '0.00')}</td>
+          <td>
+            <div class="text-center">
+              <strong class="text-success">${ordersCompleted}</strong>
+              <small class="d-block text-muted">completed</small>
+            </div>
+          </td>
+          <td>
+            <div class="text-center">
+              <strong class="text-warning">${pendingOrders}</strong>
+              <small class="d-block text-muted">pending</small>
+            </div>
+          </td>
+          <td>
+            <div class="text-center">
+              <strong class="text-info">${currentOrderNum}</strong>
+              <small class="d-block text-muted">/ 25</small>
+            </div>
+          </td>
+          <td>
+            <div class="progress" style="height: 20px; min-width: 80px;">
+              <div class="progress-bar ${progressColor}" role="progressbar" style="width: ${progressPercentage}%">
+                ${progressPercentage}%
+              </div>
+            </div>
+          </td>
+          <td>${statusBadge}</td>
+          <td>
+            <button class="btn btn-sm btn-info" onclick="showUserDetails('${user.email}')">
+              <i class="fas fa-eye"></i> View
+            </button>
+            <button class="btn btn-sm btn-warning" onclick="editUserDirect('${user.email}')">
+              <i class="fas fa-edit"></i> Edit
+            </button>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  function showUserDetails(userEmail) {
+    const users = JSON.parse(localStorage.getItem('site_users') || '[]');
+    const deposits = JSON.parse(localStorage.getItem('shopezene_deposits') || '[]');
+    const withdrawals = JSON.parse(localStorage.getItem('shopezene_withdrawals') || '[]');
+    const earnings = JSON.parse(localStorage.getItem('shopezene_earnings') || '[]');
+    const lockedOrders = JSON.parse(localStorage.getItem('shopezene_locked_orders') || '[]');
+    
+    const user = users.find(u => u.email === userEmail);
+    if (!user) {
+      alert('User not found');
+      return;
+    }
+    
+    currentSelectedUser = user;
+    
+    // Calculate statistics
+    const userDeposits = deposits.filter(d => d.email === userEmail);
+    const userWithdrawals = withdrawals.filter(w => w.email === userEmail);
+    const userEarnings = earnings.filter(e => e.email === userEmail);
+    const userLockedOrders = lockedOrders.filter(o => o.userEmail === userEmail);
+    
+    const totalDeposits = userDeposits.reduce((sum, d) => sum + d.amount, 0);
+    const totalWithdrawals = userWithdrawals.reduce((sum, w) => sum + w.amount, 0);
+    const totalEarnings = userEarnings.reduce((sum, e) => sum + e.amount, 0);
+    const ordersCompleted = userEarnings.length;
+    
+    // Update modal content
+    document.getElementById('modalAvatar').textContent = user.fullName.charAt(0).toUpperCase();
+    document.getElementById('modalUserName').textContent = user.fullName;
+    document.getElementById('modalUserEmail').textContent = user.email;
+    document.getElementById('modalUserId').textContent = '#' + user.id;
+    document.getElementById('modalUserPhone').textContent = user.phone;
+    document.getElementById('modalUserVIP').textContent = user.vipLevel || 'VIP 1';
+    document.getElementById('modalUserStatus').textContent = user.email === 'admin@test.com' ? 'Admin' : 'Active';
+    document.getElementById('modalUserCreated').textContent = new Date(user.createdAt).toLocaleDateString();
+    
+    // Financial info
+    document.getElementById('modalUserBalance').textContent = '$' + (user.balance || '0.00');
+    document.getElementById('modalUserDeposits').textContent = '$' + totalDeposits.toFixed(2);
+    document.getElementById('modalUserEarnings').textContent = '$' + totalEarnings.toFixed(2);
+    document.getElementById('modalUserWithdrawals').textContent = '$' + totalWithdrawals.toFixed(2);
+    
+    // Password
+    document.getElementById('modalUserPassword').textContent = '••••••••';
+    passwordVisible = false;
+    
+    // Order statistics
+    document.getElementById('modalUserOrders').textContent = ordersCompleted;
+    document.getElementById('modalUserLockedOrders').textContent = userLockedOrders.filter(o => o.status === 'active').length;
+    document.getElementById('modalUserPendingOrders').textContent = userLockedOrders.filter(o => o.status === 'pending_payment').length;
+    
+    // Show modal
+    document.getElementById('userDetailsModal').style.display = 'block';
+  }
+
+  function closeUserDetailsModal() {
+    document.getElementById('userDetailsModal').style.display = 'none';
+    currentSelectedUser = null;
+  }
+
+  function togglePasswordVisibility() {
+    const passwordElement = document.getElementById('modalUserPassword');
+    const button = event.target;
+    
+    if (passwordVisible) {
+      passwordElement.textContent = '••••••••';
+      button.innerHTML = '<i class="fas fa-eye"></i> Show';
+      passwordVisible = false;
+    } else {
+      passwordElement.textContent = currentSelectedUser.password;
+      button.innerHTML = '<i class="fas fa-eye-slash"></i> Hide';
+      passwordVisible = true;
+    }
+  }
+
+  function editUser() {
+    if (!currentSelectedUser) return;
+    
+    const newBalance = prompt('Enter new balance:', currentSelectedUser.balance || '0');
+    if (newBalance !== null) {
+      const users = JSON.parse(localStorage.getItem('site_users') || '[]');
+      const userIndex = users.findIndex(u => u.email === currentSelectedUser.email);
+      
+      if (userIndex >= 0) {
+        users[userIndex].balance = parseFloat(newBalance);
+        localStorage.setItem('site_users', JSON.stringify(users));
+        
+        currentSelectedUser.balance = parseFloat(newBalance);
+        showUserDetails(currentSelectedUser.email);
+        loadUsers();
+        alert('User balance updated!');
+      }
+    }
+  }
+
+  function editUserDirect(userEmail) {
+    const users = JSON.parse(localStorage.getItem('site_users') || '[]');
+    const user = users.find(u => u.email === userEmail);
+    
+    if (user) {
+      const newBalance = prompt(`Enter new balance for ${user.fullName}:`, user.balance || '0');
+      if (newBalance !== null) {
+        const userIndex = users.findIndex(u => u.email === userEmail);
+        users[userIndex].balance = parseFloat(newBalance);
+        localStorage.setItem('site_users', JSON.stringify(users));
+        loadUsers();
+        alert('User balance updated!');
+      }
+    }
+  }
+
+  function resetUserPassword() {
+    if (!currentSelectedUser) return;
+    
+    if (confirm(`Are you sure you want to reset password for ${currentSelectedUser.fullName}?`)) {
+      const newPassword = prompt('Enter new password:', '123456');
+      if (newPassword) {
+        const users = JSON.parse(localStorage.getItem('site_users') || '[]');
+        const userIndex = users.findIndex(u => u.email === currentSelectedUser.email);
+        
+        if (userIndex >= 0) {
+          users[userIndex].password = newPassword;
+          localStorage.setItem('site_users', JSON.stringify(users));
+          
+          currentSelectedUser.password = newPassword;
+          if (passwordVisible) {
+            document.getElementById('modalUserPassword').textContent = newPassword;
+          }
+          
+          alert('Password reset successfully!');
+        }
+      }
+    }
+  }
+
+  function resetUserOrders() {
+    if (!currentSelectedUser) return;
+    
+    if (confirm(`Are you sure you want to reset all orders for ${currentSelectedUser.fullName}?\n\nThis will:\n- Reset order progress to #1\n- Clear all order history\n- Remove any locked orders\n- Set remaining orders to 25\n\nThis action cannot be undone!`)) {
+      
+      const userEmail = currentSelectedUser.email;
+      
+      // 1. Reset user-specific order progress
+      const userOrderKey = `shopezene_current_order_${userEmail}`;
+      const userRemainingKey = `shopezene_remaining_${userEmail}`;
+      
+      localStorage.setItem(userOrderKey, '1');
+      localStorage.setItem(userRemainingKey, '25');
+      
+      // 2. Remove user's locked orders
+      let lockedOrders = JSON.parse(localStorage.getItem('shopezene_locked_orders') || '[]');
+      lockedOrders = lockedOrders.filter(order => order.userEmail !== userEmail);
+      localStorage.setItem('shopezene_locked_orders', JSON.stringify(lockedOrders));
+      
+      // 3. Clear user's earnings history
+      let earnings = JSON.parse(localStorage.getItem('shopezene_earnings') || '[]');
+      earnings = earnings.filter(earning => earning.email !== userEmail);
+      localStorage.setItem('shopezene_earnings', JSON.stringify(earnings));
+      
+      // 4. Reset user's balance (optional - you can comment this out if you want to keep balance)
+      let users = JSON.parse(localStorage.getItem('site_users') || '[]');
+      const userIndex = users.findIndex(u => u.email === userEmail);
+      if (userIndex >= 0) {
+        users[userIndex].balance = '0.00';
+        localStorage.setItem('site_users', JSON.stringify(users));
+        currentSelectedUser.balance = '0.00';
+      }
+      
+      // 5. Add a log entry for admin tracking
+      const adminLog = JSON.parse(localStorage.getItem('admin_order_resets') || '[]');
+      adminLog.push({
+        userEmail: userEmail,
+        userName: currentSelectedUser.fullName,
+        resetDate: new Date().toISOString(),
+        resetBy: 'Admin'
+      });
+      localStorage.setItem('admin_order_resets', JSON.stringify(adminLog));
+      
+      // Trigger live sync event for user
+      const adminActions = JSON.parse(localStorage.getItem('admin_actions') || '[]');
+      adminActions.push({
+        type: 'orders_reset',
+        userEmail: userEmail,
+        timestamp: new Date().toISOString()
+      });
+      localStorage.setItem('admin_actions', JSON.stringify(adminActions));
+      
+      // 6. Refresh the modal and tables
+      showUserDetails(userEmail);
+      loadUsers();
+      loadLockedOrders();
+      loadDashboard();
+      
+      alert(`Orders reset successfully for ${currentSelectedUser.fullName}!\n\nUser will see the reset silently without any notifications and will start from order #1.`);
+    }
+  }
+
+  // Search functionality
+  document.getElementById('userSearch').addEventListener('input', loadUsers);
+
+  // Wallet Settings Functions
+  function loadWalletSettings() {
+    const walletSettings = JSON.parse(localStorage.getItem('shopezene_wallet_settings') || '{}');
+    
+    // Load current settings
+    const currentAddress = walletSettings.trc20Address || 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t';
+    const currentNetwork = walletSettings.network || 'TRC-20 (Tron)';
+    const currentMinDeposit = walletSettings.minDeposit || '30';
+    const lastUpdated = walletSettings.lastUpdated || 'Never';
+    
+    // Update form fields
+    document.getElementById('trc20Address').value = currentAddress;
+    document.getElementById('trc20Network').value = currentNetwork;
+    document.getElementById('minDeposit').value = currentMinDeposit;
+    
+    // Update current settings display
+    document.getElementById('currentTrc20Address').textContent = currentAddress;
+    document.getElementById('currentNetwork').textContent = currentNetwork;
+    document.getElementById('currentMinDeposit').textContent = currentMinDeposit + ' USDT';
+    document.getElementById('lastUpdated').textContent = lastUpdated === 'Never' ? 'Never' : new Date(lastUpdated).toLocaleString();
+  }
+
+  function saveWalletSettings() {
+    const trc20Address = document.getElementById('trc20Address').value.trim();
+    const network = document.getElementById('trc20Network').value;
+    const minDeposit = document.getElementById('minDeposit').value;
+    const walletPassword = document.getElementById('walletPassword').value;
+    
+    // Password validation
+    if (!walletPassword) {
+      alert('⚠️ Admin password required to change wallet settings!');
+      return;
+    }
+    
+    // Check if password is correct (you can change this password)
+    const ADMIN_PASSWORD = 'theybrokeus'; // Your secure password
+    if (walletPassword !== ADMIN_PASSWORD) {
+      alert('❌ Incorrect admin password! Access denied.');
+      // Clear password field
+      document.getElementById('walletPassword').value = '';
+      return;
+    }
+    
+    // Validation
+    if (!trc20Address) {
+      alert('Please enter a TRC-20 wallet address');
+      return;
+    }
+    
+    if (trc20Address.length < 10) {
+      alert('Please enter a valid TRC-20 wallet address');
+      return;
+    }
+    
+    if (!minDeposit || minDeposit < 1) {
+      alert('Please enter a valid minimum deposit amount');
+      return;
+    }
+    
+    // Confirm before changing wallet address
+    if (trc20Address !== JSON.parse(localStorage.getItem('shopezene_wallet_settings') || '{}').trc20Address) {
+      const confirmChange = confirm(`⚠️ WARNING: You are about to change the wallet address!\n\nCurrent: ${JSON.parse(localStorage.getItem('shopezene_wallet_settings') || '{}').trc20Address || 'Not set'}\nNew: ${trc20Address}\n\nThis will change where ALL users send their deposits.\n\nAre you absolutely sure?`);
+      if (!confirmChange) {
+        return;
+      }
+    }
+    
+    // Save settings
+    const walletSettings = {
+      trc20Address: trc20Address,
+      network: network,
+      minDeposit: minDeposit,
+      lastUpdated: new Date().toISOString(),
+      updatedBy: 'Admin',
+      passwordProtected: true
+    };
+    
+    localStorage.setItem('shopezene_wallet_settings', JSON.stringify(walletSettings));
+    
+    // Trigger live sync event
+    const adminActions = JSON.parse(localStorage.getItem('admin_actions') || '[]');
+    adminActions.push({
+      type: 'wallet_settings_update',
+      settings: walletSettings,
+      timestamp: new Date().toISOString()
+    });
+    localStorage.setItem('admin_actions', JSON.stringify(adminActions));
+    
+    // Update display
+    loadWalletSettings();
+    
+    // Clear password field for security
+    document.getElementById('walletPassword').value = '';
+    
+    alert('✅ Wallet settings saved successfully!\n\nThe deposit page will be updated immediately for all users without refreshing.');
+  }
+
+  function resetWalletSettings() {
+    // Ask for admin password first
+    const resetPassword = prompt('⚠️ Admin password required to reset wallet settings:');
+    
+    if (!resetPassword) {
+      return; // User cancelled
+    }
+    
+    // Check password
+    const ADMIN_PASSWORD = 'theybrokeus'; // Same password as save function
+    if (resetPassword !== ADMIN_PASSWORD) {
+      alert('❌ Incorrect admin password! Access denied.');
+      return;
+    }
+    
+    // Double confirmation for reset
+    const confirmReset = confirm('⚠️ WARNING: You are about to reset wallet settings to default!\n\nThis will change:\n- TRC-20 Address: TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t\n- Network: TRC-20 (Tron)\n- Min Deposit: 30 USDT\n\nAll users will see the default address immediately!\n\nAre you absolutely sure?');
+    
+    if (!confirmReset) {
+      return;
+    }
+    
+    const defaultSettings = {
+      trc20Address: 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t',
+      network: 'TRC-20 (Tron)',
+      minDeposit: '30',
+      lastUpdated: new Date().toISOString(),
+      updatedBy: 'Admin',
+      reset: true,
+      passwordProtected: true
+    };
+    
+    localStorage.setItem('shopezene_wallet_settings', JSON.stringify(defaultSettings));
+    
+    // Trigger live sync
+    const adminActions = JSON.parse(localStorage.getItem('admin_actions') || '[]');
+    adminActions.push({
+      type: 'wallet_settings_reset',
+      settings: defaultSettings,
+      timestamp: new Date().toISOString()
+    });
+    localStorage.setItem('admin_actions', JSON.stringify(adminActions));
+    
+    loadWalletSettings();
+    alert('✅ Wallet settings reset to default successfully!\n\nThe deposit page will be updated immediately for all users.');
+  }
+
+  function copyAdminAddress() {
+    const addressInput = document.getElementById('trc20Address');
+    const address = addressInput.value;
+    
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(address).then(() => {
+        alert('Address copied to clipboard!');
+      }).catch(() => {
+        fallbackCopy(address);
+      });
+    } else {
+      fallbackCopy(address);
+    }
+  }
+
+  function fallbackCopy(address) {
+    const textarea = document.createElement('textarea');
+    textarea.value = address;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    
+    try {
+      document.execCommand('copy');
+      alert('Address copied to clipboard!');
+    } catch (err) {
+      alert('Failed to copy address. Please copy manually.');
+    }
+    
+    document.body.removeChild(textarea);
+  }
+
+  // Initialize
+  loadDashboard();
+  startAdminLiveSync();
+  
+  // Clean up when admin leaves page
+  window.addEventListener('beforeunload', () => {
+    stopAdminLiveSync();
+  });
+</script>
+
+</body>
+</html>
