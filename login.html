@@ -189,23 +189,18 @@
   </div>
 
   <script>
-    // JSON Bin Shared Storage - Global User Management
-    const JSON_BIN_ID = '69bdb87ac3097a1dd54421b8'; // Your actual bin ID
-    const JSON_BIN_KEY = 'YOUR-MASTER-KEY-HERE'; // Replace with your actual master key
-    const JSON_BIN_URL = `https://api.jsonbin.io/v3/b/${JSON_BIN_ID}`;
+    // Simple Public Access - No Master Key Needed
+    const JSON_BIN_ID = '69bdb87ac3097a1dd54421b8';
+    const JSON_BIN_URL = `https://api.jsonbin.io/v3/b/${JSON_BIN_ID}/latest`;
     
     async function getSharedData() {
       try {
-        const response = await fetch(`${JSON_BIN_URL}/latest`, {
-          headers: {
-            'X-Master-Key': JSON_BIN_KEY
-          }
-        });
+        const response = await fetch(JSON_BIN_URL);
         const data = await response.json();
         return data.record || { users: [], deposits: [], withdrawals: [], earnings: [] };
       } catch (error) {
         console.log('JSON Bin error, using localStorage:', error);
-        // Fallback to localStorage if JSON Bin fails
+        // Fallback to localStorage
         return {
           users: JSON.parse(localStorage.getItem('site_users') || '[]'),
           deposits: JSON.parse(localStorage.getItem('shopezene_deposits') || '[]'),
@@ -217,28 +212,14 @@
     
     async function saveSharedData(data) {
       try {
-        const response = await fetch(JSON_BIN_URL, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-            'X-Master-Key': JSON_BIN_KEY,
-            'X-Bin-Versioning': 'false'
-          },
-          body: JSON.stringify(data)
-        });
-        
-        if (response.ok) {
-          console.log('Data saved to JSON Bin successfully');
-        } else {
-          throw new Error('Failed to save to JSON Bin');
-        }
-      } catch (error) {
-        console.log('JSON Bin save error, using localStorage:', error);
-        // Fallback to localStorage
+        // For now, just use localStorage
         localStorage.setItem('site_users', JSON.stringify(data.users));
         localStorage.setItem('shopezene_deposits', JSON.stringify(data.deposits));
         localStorage.setItem('shopezene_withdrawals', JSON.stringify(data.withdrawals));
         localStorage.setItem('shopezene_earnings', JSON.stringify(data.earnings));
+        console.log('Data saved to localStorage (JSON Bin write would need Master Key)');
+      } catch (error) {
+        console.log('Save error:', error);
       }
     }
 
@@ -310,12 +291,17 @@
       if (password !== confirm) { errorDiv.textContent = 'Passwords do not match'; errorDiv.style.display = 'block'; return; }
       if (password.length < 6) { errorDiv.textContent = 'Password must be at least 6 characters'; errorDiv.style.display = 'block'; return; }
 
+      // Get current data and add new user
       const sharedData = await getSharedData();
       if (sharedData.users.find(u => u.email === email)) { errorDiv.textContent = 'Account already exists'; errorDiv.style.display = 'block'; return; }
 
       const nameParts = name.trim().split(' ');
       const newUser = { id: Date.now(), firstName: nameParts[0], lastName: nameParts.slice(1).join(' ') || '', fullName: name, email, phone, password, balance: '0.00', deposit: '0.00', withdraw: '0.00', earnings: '0.00', vipLevel: 'Starter', createdAt: new Date().toISOString() };
+      
+      // Add user to existing data
       sharedData.users.push(newUser);
+      
+      // Save all data back
       await saveSharedData(sharedData);
 
       errorDiv.style.display = 'none';

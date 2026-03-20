@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Setup Demo Data</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
+    .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .btn { background: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin: 5px; }
+    .btn:hover { background: #0056b3; }
+    .success { background: #28a745; }
+    .danger { background: #dc3545; }
+    .info { background: #17a2b8; }
+    .alert { padding: 15px; margin: 10px 0; border-radius: 5px; }
+    .alert-success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+    .alert-info { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🚀 Shopzene Demo Data Setup</h1>
+    <p>This will setup demo users and data for your Shopzene platform. Click the buttons below to add demo data.</p>
+    
+    <div class="alert alert-info">
+      <strong>⚠️ Important:</strong> This will create demo accounts that you can use to test your platform.
+    </div>
+
+    <h3>Demo Users</h3>
+    <button class="btn success" onclick="setupDemoUsers()">👥 Create Demo Users</button>
+    <button class="btn danger" onclick="clearUsers()">🗑️ Clear All Users</button>
+    
+    <h3>Transactions</h3>
+    <button class="btn info" onclick="addDemoTransactions()">💰 Add Demo Transactions</button>
+    <button class="btn danger" onclick="clearTransactions()">🗑️ Clear Transactions</button>
+    
+    <h3>Orders</h3>
+    <button class="btn info" onclick="addDemoOrders()">📦 Add Demo Orders</button>
+    <button class="btn danger" onclick="clearOrders()">🗑️ Clear Orders</button>
+
+    <div id="status" style="margin-top: 20px;"></div>
+
+    <h3>📋 Demo Login Credentials</h3>
+    <div class="alert alert-success">
+      <strong>Admin:</strong> admin@test.com / admin123<br>
+      <strong>User 1:</strong> john@test.com / demo123<br>
+      <strong>User 2:</strong> sarah@test.com / demo123<br>
+      <strong>User 3:</strong> mike@test.com / demo123
+    </div>
+
+    <h3>🔗 Next Steps</h3>
+    <ol>
+      <li>Click "Create Demo Users" to add test accounts</li>
+      <li>Click "Add Demo Transactions" to add sample deposits/earnings</li>
+      <li>Click "Add Demo Orders" to add sample orders</li>
+      <li>Go to <a href="login.html">login.html</a> and test with demo accounts</li>
+      <li>Admin login: <a href="admin-new.html">admin-new.html</a></li>
+    </ol>
+  </div>
+
+  <script>
+    function showStatus(message, type = 'success') {
+      const status = document.getElementById('status');
+      status.innerHTML = `<div class="alert alert-${type}">${message}</div>`;
+      setTimeout(() => status.innerHTML = '', 3000);
+    }
+
+    function setupDemoUsers() {
+      const users = [
+        {
+          id: 1,
+          firstName: 'Admin',
+          lastName: 'User',
+          fullName: 'Admin User',
+          email: 'admin@test.com',
+          phone: '+1234567890',
+          password: 'admin123',
+          balance: '5000.00',
+          deposit: '0.00',
+          withdraw: '0.00',
+          earnings: '0.00',
+          vipLevel: 'VIP 3',
+          isAdmin: true,
+          createdAt: new Date().toISOString()
+        },
+        {
+          id: 2,
+          firstName: 'John',
+          lastName: 'Smith',
+          fullName: 'John Smith',
+          email: 'john@test.com',
+          phone: '+1234567891',
+          password: 'demo123',
+          balance: '1250.50',
+          deposit: '1000.00',
+          withdraw: '0.00',
+          earnings: '250.50',
+          vipLevel: 'VIP 2',
+          createdAt: new Date().toISOString()
+        },
+        {
+          id: 3,
+          firstName: 'Sarah',
+          lastName: 'Johnson',
+          fullName: 'Sarah Johnson',
+          email: 'sarah@test.com',
+          phone: '+1234567892',
+          password: 'demo123',
+          balance: '850.00',
+          deposit: '500.00',
+          withdraw: '0.00',
+          earnings: '350.00',
+          vipLevel: 'VIP 1',
+          createdAt: new Date().toISOString()
+        },
+        {
+          id: 4,
+          firstName: 'Mike',
+          lastName: 'Wilson',
+          fullName: 'Mike Wilson',
+          email: 'mike@test.com',
+          phone: '+1234567893',
+          password: 'demo123',
+          balance: '2100.75',
+          deposit: '1500.00',
+          withdraw: '200.00',
+          earnings: '800.75',
+          vipLevel: 'VIP 2',
+          createdAt: new Date().toISOString()
+        }
+      ];
+
+      localStorage.setItem('site_users', JSON.stringify(users));
+      showStatus('✅ Demo users created successfully!');
+    }
+
+    function clearUsers() {
+      localStorage.removeItem('site_users');
+      showStatus('🗑️ All users cleared!', 'info');
+    }
+
+    function addDemoTransactions() {
+      const deposits = [
+        { email: 'john@test.com', amount: 1000, date: new Date().toLocaleString(), status: 'completed' },
+        { email: 'sarah@test.com', amount: 500, date: new Date().toLocaleString(), status: 'completed' },
+        { email: 'mike@test.com', amount: 1500, date: new Date().toLocaleString(), status: 'completed' }
+      ];
+
+      const earnings = [
+        { email: 'john@test.com', amount: 250.50, date: new Date().toLocaleString() },
+        { email: 'sarah@test.com', amount: 350.00, date: new Date().toLocaleString() },
+        { email: 'mike@test.com', amount: 800.75, date: new Date().toLocaleString() }
+      ];
+
+      const withdrawals = [
+        { email: 'mike@test.com', amount: 200, date: new Date().toLocaleString(), status: 'completed' }
+      ];
+
+      localStorage.setItem('shopezene_deposits', JSON.stringify(deposits));
+      localStorage.setItem('shopezene_earnings', JSON.stringify(earnings));
+      localStorage.setItem('shopezene_withdrawals', JSON.stringify(withdrawals));
+      localStorage.setItem('shopezene_balance', '5000');
+
+      showStatus('💰 Demo transactions added successfully!');
+    }
+
+    function clearTransactions() {
+      localStorage.removeItem('shopezene_deposits');
+      localStorage.removeItem('shopezene_earnings');
+      localStorage.removeItem('shopezene_withdrawals');
+      localStorage.removeItem('shopezene_balance');
+      showStatus('🗑️ All transactions cleared!', 'info');
+    }
+
+    function addDemoOrders() {
+      const lockedOrders = [
+        {
+          userEmail: 'john@test.com',
+          orderNumber: 1234,
+          deposit: 100,
+          profit: 25,
+          total: 125,
+          status: 'active',
+          createdAt: new Date().toISOString()
+        },
+        {
+          userEmail: 'sarah@test.com',
+          orderNumber: 1235,
+          deposit: 150,
+          profit: 35,
+          total: 185,
+          status: 'pending_payment',
+          createdAt: new Date().toISOString()
+        }
+      ];
+
+      localStorage.setItem('shopezene_locked_orders', JSON.stringify(lockedOrders));
+      
+      // Set order progress for users
+      localStorage.setItem('shopezene_current_order_john@test.com', '5');
+      localStorage.setItem('shopezene_remaining_john@test.com', '20');
+      localStorage.setItem('shopezene_current_order_sarah@test.com', '8');
+      localStorage.setItem('shopezene_remaining_sarah@test.com', '17');
+      localStorage.setItem('shopezene_current_order_mike@test.com', '12');
+      localStorage.setItem('shopezene_remaining_mike@test.com', '13');
+
+      showStatus('📦 Demo orders added successfully!');
+    }
+
+    function clearOrders() {
+      localStorage.removeItem('shopezene_locked_orders');
+      showStatus('🗑️ All orders cleared!', 'info');
+    }
+  </script>
+</body>
+</html>

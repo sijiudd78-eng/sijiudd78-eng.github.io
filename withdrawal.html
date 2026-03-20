@@ -1,0 +1,881 @@
+<!-- /*
+* Template Name: Append
+* Template Author: Shopzene
+* Template URI: https://shopezene.com/
+* License: https://creativecommons.org/licenses/by/3.0/
+*/ -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Shopzene">
+  <link rel="shortcut icon" href="favicon.png">
+
+  <meta name="description" content="" />
+  <meta name="keywords" content="bootstrap, bootstrap4" />
+
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+  <link rel="stylesheet" href="fonts/feather/style.css">
+  <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+  <link rel="stylesheet" href="css/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="css/aos.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <title>Shopzene - Withdrawal</title>
+</head>
+<body>
+
+
+    <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close">
+          <span class="icofont-close js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+    
+    <div class="container">
+
+
+      <nav class="site-nav">
+        <div class="logo">
+          <a href="index.html" class="text-white">Shopezene<span class="text-black">.</span></a>
+        </div>
+        <div class="row align-items-center">
+          
+          
+          <div class="col-12 col-sm-12 col-lg-12 site-navigation text-center">
+            <ul class="js-clone-nav d-none d-lg-inline-block text-left site-menu">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="vip-levels.html">VIP Levels</a></li>
+              <li><a href="orders.html">Orders</a></li>
+              <li><a href="dashboard.html">Dashboard</a></li>
+              <li><a href="how-it-works.html">How It Works</a></li>
+              <li><a href="deposit.html">Deposit</a></li>
+              <li class="active"><a href="withdrawal.html">Withdrawal</a></li>
+              <li><a href="faq.html">FAQ</a></li>
+            </ul>
+
+            <ul class="js-clone-nav d-none d-lg-inline-block text-left site-menu float-right menu-absolute">
+              <li class="cta-button"><a href="dashboard.html">Dashboard</a></li>
+              <li class="cta-button"><a href="login.html">Logout</a></li>
+            </ul>
+
+            <a href="#" class="burger light ml-auto site-menu-toggle js-menu-toggle d-block d-lg-none" data-toggle="collapse" data-target="#main-navbar">
+              <span></span>
+            </a>
+
+          </div>
+
+        </div>  
+      </nav> <!-- END nav -->
+
+    </div> <!-- END container -->
+
+
+    <div class="hero-slant overlay" data-stellar-background-ratio="0.5" style="background-image: url('images/hero-min.jpg')">
+
+      <div class="container">
+        <div class="row align-items-center justify-content-center">
+          <div class="col-lg-7 intro text-center">
+            <h1 class="text-white font-weight-bold mb-4" data-aos="fade-up" data-aos-delay="0">Withdraw Your Earnings</h1>
+            <p class="text-white mb-4" data-aos="fade-up" data-aos-delay="100">Instant withdrawals for VIP members - get your daily earnings in minutes</p>
+            <p data-aos="fade-up" data-aos-delay="200"><a href="#withdrawal-form" class="btn btn-primary">Withdraw Now</a></p>
+            
+          
+          </div>
+          
+          
+        </div>
+
+        
+      </div>
+
+      <div class="slant" style="background-image: url('images/slant.svg');"></div>
+    </div>
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row justify-content-center" id="withdrawal-form">
+          <div class="col-lg-6">
+            <div class="card shadow-sm" data-aos="fade-up">
+              <div class="card-header bg-warning text-white">
+                <h4 class="mb-0">Instant Withdrawal</h4>
+              </div>
+              <div class="card-body">
+                <form action="#" method="POST">
+                  <div class="form-group">
+                    <label for="username">Shopzene Username</label>
+                    <input type="text" class="form-control" id="username" placeholder="Enter your username" required>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="withdrawal-amount">Amount (USDT)</label>
+                    <input type="number" class="form-control" id="withdrawal-amount" placeholder="Enter amount (min: 50 USDT)" min="50" required>
+                    <small class="form-text text-muted">Minimum withdrawal: 50 USDT | Maximum: Available Balance</small>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="wallet-address">USDT Wallet Address (TRC-20)</label>
+                    <input type="text" class="form-control" id="wallet-address" placeholder="Enter your USDT wallet address" required>
+                    <small class="form-text text-muted">TRC-20 network only - double-check address</small>
+                  </div>
+                  
+                  <div class="form-group">
+                    <input type="password" class="form-control" id="withdrawal-password" placeholder="Enter your withdrawal password" required>
+                    <small class="form-text text-muted">Different from your login password</small>
+                  </div>
+                  
+                  <div class="alert alert-warning">
+                    <strong>Important:</strong> Minimum withdrawal is 50 USDT. Processing time depends on your VIP level: VIP 1: 24-48 hours | VIP 2: 2-6 hours | VIP 3: Instant 5-30 minutes
+                  </div>
+                  
+                  <button type="submit" class="btn btn-warning btn-lg btn-block">Withdraw Earnings</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- User Withdrawal Stats -->
+        <div class="row mt-5">
+          <div class="col-12">
+            <div class="card shadow-sm" data-aos="fade-up" data-aos-delay="100">
+              <div class="card-header bg-success text-white">
+                <h5 class="mb-0">Your Withdrawal Summary</h5>
+              </div>
+              <div class="card-body">
+                <div class="row text-center">
+                  <div class="col-md-3">
+                    <h4 class="text-success" id="available-balance">$0.00</h4>
+                    <p class="small">Available Balance</p>
+                  </div>
+                  <div class="col-md-3">
+                    <h4 class="text-primary" id="today-withdrawn">$0.00</h4>
+                    <p class="small">Withdrawn Today</p>
+                  </div>
+                  <div class="col-md-3">
+                    <h4 class="text-warning" id="processing-time">--</h4>
+                    <p class="small">Your Processing Time</p>
+                  </div>
+                  <div class="col-md-3">
+                    <h4 class="text-info" id="withdrawal-count">0</h4>
+                    <p class="small">Total Withdrawals</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Withdrawal Payment Methods -->
+        <div class="row mt-5">
+          <div class="col-12">
+            <div class="card shadow-sm" data-aos="fade-up" data-aos-delay="100">
+              <div class="card-header bg-info text-white">
+                <h5 class="mb-0">Available Withdrawal Methods</h5>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <!-- TRC-20 (Active) -->
+                  <div class="col-md-3 col-sm-4 col-6 mb-3">
+                    <div class="payment-method active" data-method="trc20" style="cursor: pointer; border: 2px solid #28a745; border-radius: 8px; padding: 15px; text-align: center;">
+                      <div class="payment-icon mb-2">
+                        <img src="https://cryptologos.cc/logos/tron-trx-logo.png" alt="TRC-20" style="width: 40px; height: 40px;">
+                      </div>
+                      <h6 class="mb-1">TRC-20</h6>
+                      <small class="text-success">Available</small>
+                    </div>
+                  </div>
+                  
+                  <!-- International Payment Methods (Disabled) -->
+                  <div class="col-md-3 col-sm-4 col-6 mb-3">
+                    <div class="payment-method disabled" data-method="paypal" style="cursor: pointer; border: 1px solid #ddd; border-radius: 8px; padding: 15px; text-align: center; opacity: 0.7;">
+                      <div class="payment-icon mb-2">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                          <rect width="40" height="40" rx="8" fill="#003087"/>
+                          <text x="20" y="25" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="8" font-weight="bold">PayPal</text>
+                        </svg>
+                      </div>
+                      <h6 class="mb-1">PayPal</h6>
+                      <small class="text-muted">USA Only</small>
+                    </div>
+                  </div>
+                  
+                  <div class="col-md-3 col-sm-4 col-6 mb-3">
+                    <div class="payment-method disabled" data-method="stripe" style="cursor: pointer; border: 1px solid #ddd; border-radius: 8px; padding: 15px; text-align: center; opacity: 0.7;">
+                      <div class="payment-icon mb-2">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                          <rect width="40" height="40" rx="8" fill="#635BFF"/>
+                          <text x="20" y="25" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Stripe</text>
+                        </svg>
+                      </div>
+                      <h6 class="mb-1">Stripe</h6>
+                      <small class="text-muted">USA Only</small>
+                    </div>
+                  </div>
+                  
+                  <div class="col-md-3 col-sm-4 col-6 mb-3">
+                    <div class="payment-method disabled" data-method="wise" style="cursor: pointer; border: 1px solid #ddd; border-radius: 8px; padding: 15px; text-align: center; opacity: 0.7;">
+                      <div class="payment-icon mb-2">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                          <rect width="40" height="40" rx="8" fill="#00B9FF"/>
+                          <text x="20" y="25" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Wise</text>
+                        </svg>
+                      </div>
+                      <h6 class="mb-1">Wise</h6>
+                      <small class="text-muted">USA Only</small>
+                    </div>
+                  </div>
+                  
+                  <div class="col-md-3 col-sm-4 col-6 mb-3">
+                    <div class="payment-method disabled" data-method="skrill" style="cursor: pointer; border: 1px solid #ddd; border-radius: 8px; padding: 15px; text-align: center; opacity: 0.7;">
+                      <div class="payment-icon mb-2">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                          <rect width="40" height="40" rx="8" fill="#862165"/>
+                          <text x="20" y="25" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold">Skrill</text>
+                        </svg>
+                      </div>
+                      <h6 class="mb-1">Skrill</h6>
+                      <small class="text-muted">USA Only</small>
+                    </div>
+                  </div>
+                  
+                  <div class="col-md-3 col-sm-4 col-6 mb-3">
+                    <div class="payment-method disabled" data-method="payoneer" style="cursor: pointer; border: 1px solid #ddd; border-radius: 8px; padding: 15px; text-align: center; opacity: 0.7;">
+                      <div class="payment-icon mb-2">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                          <rect width="40" height="40" rx="8" fill="#FF6600"/>
+                          <text x="20" y="25" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="7" font-weight="bold">Payoneer</text>
+                        </svg>
+                      </div>
+                      <h6 class="mb-1">Payoneer</h6>
+                      <small class="text-muted">USA Only</small>
+                    </div>
+                  </div>
+                  
+                  <div class="col-md-3 col-sm-4 col-6 mb-3">
+                    <div class="payment-method disabled" data-method="neteller" style="cursor: pointer; border: 1px solid #ddd; border-radius: 8px; padding: 15px; text-align: center; opacity: 0.7;">
+                      <div class="payment-icon mb-2">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                          <rect width="40" height="40" rx="8" fill="#00833E"/>
+                          <text x="20" y="25" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="8" font-weight="bold">Neteller</text>
+                        </svg>
+                      </div>
+                      <h6 class="mb-1">Neteller</h6>
+                      <small class="text-muted">USA Only</small>
+                    </div>
+                  </div>
+                  
+                  <div class="col-md-3 col-sm-4 col-6 mb-3">
+                    <div class="payment-method disabled" data-method="venmo" style="cursor: pointer; border: 1px solid #ddd; border-radius: 8px; padding: 15px; text-align: center; opacity: 0.7;">
+                      <div class="payment-icon mb-2">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                          <rect width="40" height="40" rx="8" fill="#3D95CE"/>
+                          <text x="20" y="25" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="9" font-weight="bold">Venmo</text>
+                        </svg>
+                      </div>
+                      <h6 class="mb-1">Venmo</h6>
+                      <small class="text-muted">USA Only</small>
+                    </div>
+                  </div>
+                  
+                  <div class="col-md-3 col-sm-4 col-6 mb-3">
+                    <div class="payment-method disabled" data-method="cashapp" style="cursor: pointer; border: 1px solid #ddd; border-radius: 8px; padding: 15px; text-align: center; opacity: 0.7;">
+                      <div class="payment-icon mb-2">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                          <rect width="40" height="40" rx="8" fill="#00C244"/>
+                          <text x="20" y="25" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="7" font-weight="bold">Cash App</text>
+                        </svg>
+                      </div>
+                      <h6 class="mb-1">Cash App</h6>
+                      <small class="text-muted">USA Only</small>
+                    </div>
+                  </div>
+                  
+                  <div class="col-md-3 col-sm-4 col-6 mb-3">
+                    <div class="payment-method disabled" data-method="zelle" style="cursor: pointer; border: 1px solid #ddd; border-radius: 8px; padding: 15px; text-align: center; opacity: 0.7;">
+                      <div class="payment-icon mb-2">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                          <rect width="40" height="40" rx="8" fill="#6D1E7E"/>
+                          <text x="20" y="25" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="8" font-weight="bold">Zelle</text>
+                        </svg>
+                      </div>
+                      <h6 class="mb-1">Zelle</h6>
+                      <small class="text-muted">USA Only</small>
+                    </div>
+                  </div>
+                  
+                  <!-- Indian Payment Methods (Disabled) -->
+                  <div class="col-md-3 col-sm-4 col-6 mb-3">
+                    <div class="payment-method disabled" data-method="razorpay" style="cursor: pointer; border: 1px solid #ddd; border-radius: 8px; padding: 15px; text-align: center; opacity: 0.7;">
+                      <div class="payment-icon mb-2">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                          <rect width="40" height="40" rx="8" fill="#0D1F3C"/>
+                          <text x="20" y="25" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="8" font-weight="bold">Razorpay</text>
+                        </svg>
+                      </div>
+                      <h6 class="mb-1">Razorpay</h6>
+                      <small class="text-muted">India Only</small>
+                    </div>
+                  </div>
+                  
+                  <div class="col-md-3 col-sm-4 col-6 mb-3">
+                    <div class="payment-method disabled" data-method="paytm" style="cursor: pointer; border: 1px solid #ddd; border-radius: 8px; padding: 15px; text-align: center; opacity: 0.7;">
+                      <div class="payment-icon mb-2">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                          <rect width="40" height="40" rx="8" fill="#00BAF2"/>
+                          <text x="20" y="25" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Paytm</text>
+                        </svg>
+                      </div>
+                      <h6 class="mb-1">Paytm</h6>
+                      <small class="text-muted">India Only</small>
+                    </div>
+                  </div>
+                  
+                  <div class="col-md-3 col-sm-4 col-6 mb-3">
+                    <div class="payment-method disabled" data-method="phonepe" style="cursor: pointer; border: 1px solid #ddd; border-radius: 8px; padding: 15px; text-align: center; opacity: 0.7;">
+                      <div class="payment-icon mb-2">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                          <rect width="40" height="40" rx="8" fill="#5E2572"/>
+                          <text x="20" y="25" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="7" font-weight="bold">PhonePe</text>
+                        </svg>
+                      </div>
+                      <h6 class="mb-1">PhonePe</h6>
+                      <small class="text-muted">India Only</small>
+                    </div>
+                  </div>
+                  
+                  <div class="col-md-3 col-sm-4 col-6 mb-3">
+                    <div class="payment-method disabled" data-method="upi" style="cursor: pointer; border: 1px solid #ddd; border-radius: 8px; padding: 15px; text-align: center; opacity: 0.7;">
+                      <div class="payment-icon mb-2">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                          <rect width="40" height="40" rx="8" fill="#FF6B35"/>
+                          <text x="20" y="25" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">UPI</text>
+                        </svg>
+                      </div>
+                      <h6 class="mb-1">UPI</h6>
+                      <small class="text-muted">India Only</small>
+                    </div>
+                  </div>
+                  
+                  <!-- More payment methods can be added here -->
+                </div>
+                
+                <div class="alert alert-info mt-3">
+                  <strong>Note:</strong> TRC-20 is currently the only available withdrawal method in your region. Other payment methods are available in USA and India only.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col-12">
+            <div class="card shadow-sm" data-aos="fade-up" data-aos-delay="100">
+              <div class="card-header bg-success text-white">
+                <h5 class="mb-0">Your Withdrawal Summary</h5>
+              </div>
+              <div class="card-body">
+                <div class="row text-center">
+                  <div class="col-md-3">
+                    <h4 class="text-success" id="available-balance">$0.00</h4>
+                    <p class="small">Available Balance</p>
+                  </div>
+                  <div class="col-md-3">
+                    <h4 class="text-primary" id="today-withdrawn">$0.00</h4>
+                    <p class="small">Withdrawn Today</p>
+                  </div>
+                  <div class="col-md-3">
+                    <h4 class="text-warning" id="processing-time">--</h4>
+                    <p class="small">Your Processing Time</p>
+                  </div>
+                  <div class="col-md-3">
+                    <h4 class="text-info" id="withdrawal-count">0</h4>
+                    <p class="small">Total Withdrawals</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    <!-- .untrtee_co-section -->
+        
+
+    <div class="testimonial-section bg-light">
+      <div class="container">
+        <div class="row align-items-center justify-content-between">
+          <div class="col-lg-4 mb-5 section-title" data-aos="fade-up" data-aos-delay="0">
+            
+            <h2 class="mb-4 font-weight-bold heading">Member Withdrawal Success</h2>
+            <p class="mb-4">Real withdrawal experiences from Shopzene members getting their earnings instantly with our VIP payment system.</p>
+            <p><a href="orders.html" class="btn btn-primary">Start Earning</a></p>
+          </div>
+          <div class="col-lg-7" data-aos="fade-up" data-aos-delay="100">
+            
+            <div class="testimonial--wrap">
+              <div class="owl-single owl-carousel no-dots no-nav">
+                <div class="testimonial-item">
+                  <div class="d-flex align-items-center mb-4">
+                    <div class="photo mr-3">
+                      <img src="images/person_4-min.jpg" alt="Image" class="img-fluid">
+                    </div>
+                    <div class="author">
+                      <cite class="d-block mb-0">Kaila Woodland</cite>
+                      <span>VIP 3 Member</span>
+                    </div>
+                  </div>
+                  <blockquote>
+                    <p>&ldquo;Shopzene's withdrawal system is amazing! I requested my earnings and got them in my wallet within 5 minutes. No delays, no hassle!&rdquo;</p>
+                  </blockquote>
+                </div>  
+
+                <div class="testimonial-item">
+                  <div class="d-flex align-items-center mb-4">
+                    <div class="photo mr-3">
+                      <img src="images/person_1-min.jpg" alt="Image" class="img-fluid">
+                    </div>
+                    <div class="author">
+                      <cite class="d-block mb-0">Michael Chen</cite>
+                      <span>VIP 2 Member</span>
+                    </div>
+                  </div>
+                  <blockquote>
+                    <p>&ldquo;I've tried many platforms, but Shopzene has the fastest withdrawals. The instant payment system really works as advertised!&rdquo;</p>
+                  </blockquote>
+                </div>  
+
+                <div class="testimonial-item">
+                  <div class="d-flex align-items-center mb-4">
+                    <div class="photo mr-3">
+                      <img src="images/person_2-min.jpg" alt="Image" class="img-fluid">
+                    </div>
+                    <div class="author">
+                      <cite class="d-block mb-0">Sarah Johnson</cite>
+                      <span>VIP 3 Member</span>
+                    </div>
+                  </div>
+                  <blockquote>
+                    <p>&ldquo;The withdrawal process is so smooth. I can withdraw my daily earnings anytime and the funds arrive instantly. Highly recommended!&rdquo;</p>
+                  </blockquote>
+                </div>  
+              </div>
+              <div class="custom-nav-wrap">
+                <a href="#" class="custom-owl-prev"><span class="icon-keyboard_backspace"></span></a>
+                <a href="#" class="custom-owl-next"><span class="icon-keyboard_backspace"></span></a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="site-section overlay site-cover-2" style="background-image: url('images/img_v_3-min.jpg')">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-7 mx-auto text-center">
+            <h2 class="text-white mb-4">Ready to Withdraw Your Earnings?</h2>
+            <p class="mb-0"><a href="dashboard.html" class="btn btn-primary">Go to Dashboard</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+     <div class="site-footer">
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col-lg-4">
+            <div class="widget">
+              <h3>About Shopzene</h3>
+              <p>Your trusted platform for order processing and daily earnings. Join thousands of members earning consistent income with our proven VIP system.</p>
+            </div>
+            <div class="widget">
+              <h3>Connect with us</h3>
+              <ul class="social list-unstyled">
+                <li><a href="#"><span class="icon-facebook"></span></a></li>
+                <li><a href="#"><span class="icon-twitter"></span></a></li>
+                <li><a href="#"><span class="icon-instagram"></span></a></li>
+                <li><a href="#"><span class="icon-dribbble"></span></a></li>
+                <li><a href="#"><span class="icon-linkedin"></span></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="row">
+              <div class="col-12">
+                <div class="widget">
+                  <h3>Navigations</h3>
+                </div>
+              </div>
+              <div class="col-6 col-sm-6 col-md-4">
+                <div class="widget">
+                  <ul class="links list-unstyled">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="vip-levels.html">VIP Levels</a></li>
+                    <li><a href="orders.html">Orders</a></li>
+                    <li><a href="withdrawal.html">Withdrawal</a></li>
+                    <li><a href="how-it-works.html">How It Works</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-6 col-sm-6 col-md-4">
+                <div class="widget">
+                  <ul class="links list-unstyled">
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="deposit.html">Deposit</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="support.html">Support</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-6 col-sm-6 col-md-4">
+                <div class="widget">
+                  <ul class="links list-unstyled">
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="earnings.html">Earnings Calculator</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row justify-content-center text-center copyright">
+          <div class="col-md-8">
+            <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script>. All Rights Reserved. &mdash; Shopzene Order Processing Platform</p> </br> 
+            <p> Instant Withdrawals for VIP Members </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <div id="overlayer"></div>
+    <div class="loader">
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script src="js/jquery-migrate-3.0.0.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/aos.js"></script>
+    <script src="js/imagesloaded.pkgd.js"></script>
+    <script src="js/isotope.pkgd.min.js"></script>
+    <script src="js/jquery.animateNumber.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.fancybox.min.js"></script>
+    <script src="js/custom.js"></script>
+
+    <script>
+      // Withdrawal page real-time data
+      let currentBalance = 0;
+      let currentVIP = 1;
+      let withdrawals = [];
+
+      // Load user data from localStorage
+      function loadWithdrawalData() {
+        currentBalance = parseFloat(localStorage.getItem('shopezene_balance') || '0');
+        currentVIP = parseInt(localStorage.getItem('shopezene_vip') || '1');
+        withdrawals = JSON.parse(localStorage.getItem('shopezene_withdrawals') || '[]');
+        
+        updateWithdrawalDisplay();
+      }
+
+      // Update withdrawal display with real user data
+      function updateWithdrawalDisplay() {
+        // Update available balance
+        document.getElementById('available-balance').textContent = `$${currentBalance.toFixed(2)}`;
+        
+        // Calculate today's withdrawals
+        const today = new Date().toDateString();
+        const todayWithdrawals = withdrawals.filter(w => new Date(w.date).toDateString() === today);
+        const todayTotal = todayWithdrawals.reduce((sum, w) => sum + w.amount, 0);
+        document.getElementById('today-withdrawn').textContent = `$${todayTotal.toFixed(2)}`;
+        
+        // Update processing time based on VIP level
+        const processingTimes = {
+          1: '24-48 hours',
+          2: '2-6 hours', 
+          3: '5-30 min'
+        };
+        document.getElementById('processing-time').textContent = processingTimes[currentVIP] || '--';
+        
+        // Update total withdrawal count
+        document.getElementById('withdrawal-count').textContent = withdrawals.length.toString();
+        
+        // Update form max amount
+        const amountInput = document.getElementById('withdrawal-amount');
+        if (amountInput) {
+          amountInput.max = currentBalance;
+          amountInput.placeholder = `Max: $${currentBalance.toFixed(2)}`;
+        }
+      }
+
+      // Handle withdrawal form submission
+      document.addEventListener('DOMContentLoaded', () => {
+        loadWithdrawalData();
+        
+        // Handle payment method clicks
+        document.querySelectorAll('.payment-method').forEach(method => {
+          method.addEventListener('click', function() {
+            const paymentType = this.dataset.method;
+            
+            if (paymentType === 'trc20') {
+              // TRC-20 is available - allow selection
+              document.querySelectorAll('.payment-method').forEach(m => {
+                m.style.borderColor = '#ddd';
+                m.style.borderWidth = '1px';
+              });
+              this.style.borderColor = '#28a745';
+              this.style.borderWidth = '2px';
+              
+              // Show success message
+              showNotification('TRC-20 selected. You can proceed with withdrawal.', 'success');
+            } else {
+              // Other payment methods are not available
+              const regionMap = {
+                'paypal': 'USA',
+                'stripe': 'USA',
+                'wise': 'USA',
+                'skrill': 'USA',
+                'payoneer': 'USA',
+                'neteller': 'USA',
+                'venmo': 'USA',
+                'cashapp': 'USA',
+                'zelle': 'USA',
+                'razorpay': 'India',
+                'paytm': 'India',
+                'phonepe': 'India',
+                'upi': 'India'
+              };
+              
+              const region = regionMap[paymentType] || 'USA';
+              showNotification(`${this.querySelector('h6').textContent} is available in ${region} only, not available in your region.`, 'warning');
+            }
+          });
+        });
+        
+        // Notification system
+        function showNotification(message, type = 'info') {
+          const notification = document.createElement('div');
+          notification.className = `alert alert-${type} alert-dismissible fade show position-fixed`;
+          notification.style.cssText = 'top: 20px; right: 20px; z-index: 9999; min-width: 300px; max-width: 400px;';
+          notification.innerHTML = `
+            ${message}
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+          `;
+          
+          document.body.appendChild(notification);
+          
+          setTimeout(() => {
+            notification.remove();
+          }, 4000);
+        }
+        
+        // Auto-refresh every 5 seconds
+        setInterval(() => {
+          loadWithdrawalData();
+        }, 5000);
+        
+        // Handle form submission
+        const withdrawalForm = document.querySelector('form');
+        if (withdrawalForm) {
+          withdrawalForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const amount = parseFloat(document.getElementById('withdrawal-amount').value);
+            const username = document.getElementById('username').value;
+            const walletAddress = document.getElementById('wallet-address').value;
+            const password = document.getElementById('withdrawal-password').value;
+            
+            if (!amount || !username || !walletAddress || !password) {
+              showNotification('Please fill all required fields', 'danger');
+              return;
+            }
+            
+            // Validate minimum withdrawal
+            if (amount < 50) {
+              showNotification('Minimum withdrawal amount is 50 USDT', 'danger');
+              return;
+            }
+            
+            // Validate balance
+            if (amount > currentBalance) {
+              showNotification('Insufficient balance!', 'danger');
+              return;
+            }
+            
+            // Show approval animation instead of processing
+            showApprovalAnimation('withdrawal', amount);
+          });
+        }
+        
+        // Show approval animation
+        function showApprovalAnimation(type, amount) {
+          // Create overlay
+          const overlay = document.createElement('div');
+          overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          `;
+          
+          // Create animation container
+          const animationContainer = document.createElement('div');
+          animationContainer.style.cssText = `
+            text-align: center;
+            color: white;
+            padding: 40px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            max-width: 400px;
+            width: 90%;
+          `;
+          
+          // Create spinner
+          const spinner = document.createElement('div');
+          spinner.style.cssText = `
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255,255,255,0.3);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+          `;
+          
+          // Add CSS animation
+          const style = document.createElement('style');
+          style.textContent = `
+            @keyframes spin {
+              0% { transform: rotate(0deg); }
+              100% { transform: rotate(360deg); }
+            }
+            @keyframes pulse {
+              0% { opacity: 0.6; }
+              50% { opacity: 1; }
+              100% { opacity: 0.6; }
+            }
+          `;
+          document.head.appendChild(style);
+          
+          // Message based on type
+          const isDeposit = type === 'deposit';
+          const title = isDeposit ? 'Awaiting Deposit Approval' : 'Awaiting Withdrawal Approval';
+          const message = isDeposit ? 
+            `Your deposit of ${amount} USDT has been submitted for approval.` :
+            `Your withdrawal of ${amount} USDT has been submitted for approval.`;
+          
+          animationContainer.innerHTML = `
+            <div style="margin-bottom: 20px;">
+              ${spinner.outerHTML}
+            </div>
+            <h2 style="margin: 0 0 15px 0; font-size: 24px; font-weight: bold;">${title}</h2>
+            <p style="margin: 0 0 10px 0; font-size: 16px; line-height: 1.5;">${message}</p>
+            <p style="margin: 0 0 25px 0; font-size: 14px; opacity: 0.9; animation: pulse 2s infinite;">
+              This can take 5 to 15 minutes. For faster process please contact support team.
+            </p>
+            <div style="display: flex; gap: 10px; justify-content: center;">
+              <button onclick="window.location.href='index.html'" style="
+                background: white;
+                color: #f5576c;
+                border: none;
+                padding: 12px 24px;
+                border-radius: 8px;
+                font-size: 16px;
+                font-weight: bold;
+                cursor: pointer;
+                transition: transform 0.2s;
+              " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                Back to Home
+              </button>
+              <button onclick="window.location.href='mailto:support@shopezene.com'" style="
+                background: transparent;
+                color: white;
+                border: 2px solid white;
+                padding: 12px 24px;
+                border-radius: 8px;
+                font-size: 16px;
+                font-weight: bold;
+                cursor: pointer;
+                transition: all 0.2s;
+              " onmouseover="this.style.background='white'; this.style.color='#f5576c'" onmouseout="this.style.background='transparent'; this.style.color='white'">
+                Contact Support
+              </button>
+            </div>
+            <div style="margin-top: 20px; font-size: 12px; opacity: 0.7;">
+              Transaction ID: #${Date.now()}
+            </div>
+          `;
+          
+          overlay.appendChild(animationContainer);
+          document.body.appendChild(overlay);
+          
+          // Prevent body scroll
+          document.body.style.overflow = 'hidden';
+        }
+      });
+    </script>
+
+    
+  <script>
+    // Check if user has pending or received locked order - restrict withdrawal access
+    (function() {
+      const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+      if (currentUser) {
+        const userEmail = currentUser.email;
+        const lockedOrders = JSON.parse(localStorage.getItem('shopezene_locked_orders') || '[]');
+        const hasPendingOrReceived = lockedOrders.some(o => o.userEmail === userEmail && (o.status === 'pending_payment' || o.status === 'received'));
+        
+        if (hasPendingOrReceived) {
+          // Get the order status for message
+          const order = lockedOrders.find(o => o.userEmail === userEmail && (o.status === 'pending_payment' || o.status === 'received'));
+          const isPending = order.status === 'pending_payment';
+          
+          // Show warning and redirect
+          document.body.innerHTML = `
+            <div style="display: flex; align-items: center; justify-content: center; min-height: 100vh; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 20px;">
+              <div style="background: white; padding: 40px; border-radius: 12px; text-align: center; max-width: 450px; box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
+                <div style="width: 80px; height: 80px; background: #fff3cd; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 40px;">⚠️</div>
+                <h2 style="color: #856404; margin: 0 0 16px; font-size: 24px;">Withdrawal Restricted</h2>
+                <p style="color: #6c757d; margin: 0 0 24px; line-height: 1.6;">
+                  ${isPending ? 'You have a pending lucky order awaiting admin approval. Withdrawals are locked until approved.' : 'You have already received a lucky order. Withdrawals are now locked.'} You can still visit the homepage and make deposits.
+                </p>
+                <a href="index.html" style="display: inline-block; padding: 14px 32px; background: linear-gradient(135deg, #667eea, #764ba2); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; transition: transform 0.2s;">
+                  Go to Homepage
+                </a>
+              </div>
+            </div>
+          `;
+        }
+      }
+    })();
+  </script>
+  
+  </body>
+  </html>

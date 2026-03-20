@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Shopzene">
+  <link rel="shortcut icon" href="favicon.png">
+  <meta name="description" content="Shopezene Earnings Calculator - Calculate your potential daily, weekly, and monthly income based on VIP level and order processing capacity." />
+  <meta name="keywords" content="earnings calculator, income calculator, vip earnings, shopezene calculator" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+  <link rel="stylesheet" href="fonts/feather/style.css">
+  <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+  <link rel="stylesheet" href="css/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="css/aos.css">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Shopezene - Earnings Calculator</title>
+</head>
+<body>
+    <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close">
+          <span class="icofont-close js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+    
+    <div class="container">
+      <nav class="site-nav">
+        <div class="logo">
+          <a href="index.html" class="text-white">Shopezene<span class="text-black">.</span></a>
+        </div>
+        <div class="row align-items-center">
+          <div class="col-12 col-sm-12 col-lg-12 site-navigation text-center">
+            <ul class="js-clone-nav d-none d-lg-inline-block text-left site-menu">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="vip-levels.html">VIP Levels</a></li>
+              <li><a href="orders.html">Orders</a></li>
+              <li><a href="dashboard.html">Dashboard</a></li>
+              <li><a href="how-it-works.html">How It Works</a></li>
+              <li><a href="deposit.html">Deposit</a></li>
+              <li><a href="withdrawal.html">Withdrawal</a></li>
+              <li><a href="faq.html">FAQ</a></li>
+              <li class="active"><a href="earnings.html">Earnings Calculator</a></li>
+            </ul>
+            <ul class="js-clone-nav d-none d-lg-inline-block text-left site-menu float-right menu-absolute">
+              <li class="cta-button"><a href="deposit.html">Get Started</a></li>
+              <li class="cta-button"><a href="login.html">Logout</a></li>
+            </ul>
+            <a href="#" class="burger light ml-auto site-menu-toggle js-menu-toggle d-block d-lg-none" data-toggle="collapse" data-target="#main-navbar">
+              <span></span>
+            </a>
+          </div>
+        </div>  
+      </nav>
+    </div>
+
+    <div class="hero-slant overlay" data-stellar-background-ratio="0.5" style="background-image: url('images/hero-min.jpg')">
+      <div class="container">
+        <div class="row align-items-center justify-content-center">
+          <div class="col-lg-7 intro text-center">
+            <h1 class="text-white font-weight-bold mb-4" data-aos="fade-up" data-aos-delay="0">Earnings Calculator</h1>
+            <p class="text-white mb-4" data-aos="fade-up" data-aos-delay="100">Calculate your potential income based on VIP level and work capacity.</p>
+            <p data-aos="fade-up" data-aos-delay="200"><a href="#calculator" class="btn btn-primary">Start Calculating</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="slant" style="background-image: url('images/slant-grey.svg');"></div>
+    </div>
+
+    <div class="site-section" id="calculator">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-lg-12">
+            <div class="section-title" data-aos="fade-up">
+              <h2 class="mb-4">Calculate Your Earnings Potential</h2>
+              <p>See how much you can earn daily, weekly, and monthly with our VIP membership system.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-8 mb-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="card shadow-sm h-100">
+              <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Earnings Calculator</h4>
+              </div>
+              <div class="card-body">
+                <form id="earningsCalculator">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="vipLevel">Select VIP Level</label>
+                        <select class="form-control" id="vipLevel" required>
+                          <option value="">Choose VIP Level</option>
+                          <option value="1">VIP 1 - 4% Commission</option>
+                          <option value="2">VIP 2 - 6% Commission</option>
+                          <option value="3">VIP 3 - 8% Commission</option>
+                        </select>
+                        <small class="form-text text-muted">Higher VIP levels = better commission rates</small>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="dailyOrders">Daily Orders Capacity</label>
+                        <input type="number" class="form-control" id="dailyOrders" placeholder="Orders you can process daily" min="1" max="50" required>
+                        <small class="form-text text-muted">Be realistic about your daily capacity</small>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="avgOrderValue">Average Order Value (USDT)</label>
+                        <input type="number" class="form-control" id="avgOrderValue" placeholder="Average value per order" min="1" step="0.01" required>
+                        <small class="form-text text-muted">Typical range: 5-50 USDT per order</small>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="workingDays">Working Days Per Week</label>
+                        <select class="form-control" id="workingDays" required>
+                          <option value="5">5 days</option>
+                          <option value="6" selected>6 days</option>
+                          <option value="7">7 days</option>
+                        </select>
+                        <small class="form-text text-muted">Days you actively process orders</small>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-12">
+                      <button type="button" class="btn btn-success btn-lg btn-block" onclick="calculateEarnings()">Calculate Earnings</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="card shadow-sm h-100">
+              <div class="card-header bg-info text-white">
+                <h5 class="mb-0">VIP Level Benefits</h5>
+              </div>
+              <div class="card-body">
+                <div class="mb-3">
+                  <h6 class="text-primary">VIP 1</h6>
+                  <ul class="list-unstyled small">
+                    <li>4% commission rate</li>
+                    <li>24-48 hour withdrawals</li>
+                    <li>Basic order access</li>
+                  </ul>
+                </div>
+                <div class="mb-3">
+                  <h6 class="text-warning">VIP 2</h6>
+                  <ul class="list-unstyled small">
+                    <li>6% commission rate</li>
+                    <li>2-6 hour withdrawals</li>
+                    <li>Premium order access</li>
+                  </ul>
+                </div>
+                <div class="mb-3">
+                  <h6 class="text-success">VIP 3</h6>
+                  <ul class="list-unstyled small">
+                    <li>8% commission rate</li>
+                    <li>5-30 minute withdrawals</li>
+                    <li>VIP order access</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-5">
+          <div class="col-lg-12">
+            <div class="card shadow-sm" data-aos="fade-up">
+              <div class="card-header bg-success text-white">
+                <h5 class="mb-0">Your Earnings Results</h5>
+              </div>
+              <div class="card-body">
+                <div class="row text-center">
+                  <div class="col-md-3">
+                    <h3 class="text-primary" id="dailyEarnings">$0</h3>
+                    <p>Daily Earnings</p>
+                  </div>
+                  <div class="col-md-3">
+                    <h3 class="text-info" id="weeklyEarnings">$0</h3>
+                    <p>Weekly Earnings</p>
+                  </div>
+                  <div class="col-md-3">
+                    <h3 class="text-success" id="monthlyEarnings">$0</h3>
+                    <p>Monthly Earnings</p>
+                  </div>
+                  <div class="col-md-3">
+                    <h3 class="text-warning" id="yearlyEarnings">$0</h3>
+                    <p>Yearly Earnings</p>
+                  </div>
+                </div>
+
+                <div class="alert alert-info mt-4">
+                  <h6 class="mb-2">How Calculations Work:</h6>
+                  <ul class="list-unstyled mb-0">
+                    <li><strong>Daily:</strong> Daily Orders × Average Order Value × Commission Rate</li>
+                    <li><strong>Weekly:</strong> Daily Earnings × Working Days Per Week</li>
+                    <li><strong>Monthly:</strong> Weekly Earnings × 4.33 (average weeks per month)</li>
+                    <li><strong>Yearly:</strong> Monthly Earnings × 12</li>
+                  </ul>
+                </div>
+
+                <div class="alert alert-warning mt-3">
+                  <strong>Note:</strong> These are estimates based on the information provided. Actual earnings may vary based on order availability and platform conditions.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-5">
+          <div class="col-lg-12">
+            <div class="card shadow-sm" data-aos="fade-up">
+              <div class="card-header bg-warning text-white">
+                <h5 class="mb-0">Earning Tips & Strategies</h5>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    <h4 class="mb-3">Maximize Your Earnings</h4>
+                    <ul class="list-unstyled">
+                      <li class="mb-2"><strong>Upgrade VIP Level:</strong> Higher VIP levels mean better commission rates</li>
+                      <li class="mb-2"><strong>Process More Orders:</strong> Increase your daily order capacity</li>
+                      <li class="mb-2"><strong>Focus on High-Value Orders:</strong> Prioritize orders with higher commission potential</li>
+                      <li class="mb-2"><strong>Work Consistently:</strong> Regular processing leads to steady income</li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6">
+                    <h4 class="mb-3">Time Management</h4>
+                    <ul class="list-unstyled">
+                      <li class="mb-2"><strong>Set Daily Goals:</strong> Establish realistic daily order targets</li>
+                      <li class="mb-2"><strong>Optimize Workflow:</strong> Develop efficient order processing routines</li>
+                      <li class="mb-2"><strong>Track Performance:</strong> Monitor your earnings and adjust strategies</li>
+                      <li class="mb-2"><strong>Take Breaks:</strong> Maintain productivity without burnout</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-5">
+          <div class="col-lg-12 text-center" data-aos="fade-up">
+            <h3 class="mb-4">Ready to Start Earning?</h3>
+            <p class="mb-4">Join thousands of members earning daily income through Shopezene's proven system.</p>
+            <p><a href="deposit.html" class="btn btn-primary btn-lg">Start Your Journey</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-footer">
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col-lg-4">
+            <div class="widget">
+              <h3>About Shopzene</h3>
+              <p>Your trusted platform for order processing and daily earnings. Join thousands of members earning consistent income with our proven VIP system.</p>
+            </div>
+            <div class="widget">
+              <h3>Connect with us</h3>
+              <ul class="social list-unstyled">
+                <li><a href="#"><span class="icon-facebook"></span></a></li>
+                <li><a href="#"><span class="icon-twitter"></span></a></li>
+                <li><a href="#"><span class="icon-instagram"></span></a></li>
+                <li><a href="#"><span class="icon-dribbble"></span></a></li>
+                <li><a href="#"><span class="icon-linkedin"></span></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="row">
+              <div class="col-12">
+                <div class="widget">
+                  <h3>Navigations</h3>
+                </div>
+              </div>
+              <div class="col-6 col-sm-6 col-md-4">
+                <div class="widget">
+                  <ul class="links list-unstyled">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="orders.html">Orders</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="how-it-works.html">How It Works</a></li>
+                    <li><a href="vip-levels.html">VIP Levels</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-6 col-sm-6 col-md-4">
+                <div class="widget">
+                  <ul class="links list-unstyled">
+                    <li><a href="deposit.html">Deposit</a></li>
+                    <li><a href="withdrawal.html">Withdrawal</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="support.html">Support</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-6 col-sm-6 col-md-4">
+                <div class="widget">
+                  <ul class="links list-unstyled">
+                    <li><a href="about.html">About Shopzene</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="earnings.html">Earnings Calculator</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center text-center copyright">
+          <div class="col-md-8">
+            <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script>. All Rights Reserved. &mdash; Designed with love by <a href="https://shopezene.com/">Shopzene</a> 
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="overlayer"></div>
+    <div class="loader">
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script src="js/jquery-migrate-3.0.0.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/aos.js"></script>
+    <script src="js/imagesloaded.pkgd.js"></script>
+    <script src="js/isotope.pkgd.min.js"></script>
+    <script src="js/jquery.animateNumber.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.fancybox.min.js"></script>
+    <script src="js/custom.js"></script>
+
+    <script>
+      // Earnings Calculator Function
+      function calculateEarnings() {
+        const vipLevel = parseInt(document.getElementById('vipLevel').value);
+        const dailyOrders = parseFloat(document.getElementById('dailyOrders').value);
+        const avgOrderValue = parseFloat(document.getElementById('avgOrderValue').value);
+        const workingDays = parseInt(document.getElementById('workingDays').value);
+        
+        // Commission rates by VIP level
+        const commissionRates = {
+          1: 0.04, // 4%
+          2: 0.06, // 6%
+          3: 0.08  // 8%
+        };
+        
+        if (!vipLevel || !dailyOrders || !avgOrderValue || !workingDays) {
+          alert('Please fill all fields');
+          return;
+        }
+        
+        const commissionRate = commissionRates[vipLevel];
+        
+        // Calculate earnings
+        const dailyEarnings = dailyOrders * avgOrderValue * commissionRate;
+        const weeklyEarnings = dailyEarnings * workingDays;
+        const monthlyEarnings = weeklyEarnings * 4.33; // Average weeks per month
+        const yearlyEarnings = monthlyEarnings * 12;
+        
+        // Update display with animation
+        animateValue('dailyEarnings', dailyEarnings);
+        animateValue('weeklyEarnings', weeklyEarnings);
+        animateValue('monthlyEarnings', monthlyEarnings);
+        animateValue('yearlyEarnings', yearlyEarnings);
+      }
+      
+      // Animate number counting
+      function animateValue(elementId, value) {
+        const element = document.getElementById(elementId);
+        const start = 0;
+        const duration = 1000;
+        const startTime = performance.now();
+        
+        function update(currentTime) {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const current = start + (value - start) * progress;
+          element.textContent = '$' + current.toFixed(2);
+          
+          if (progress < 1) {
+            requestAnimationFrame(update);
+          }
+        }
+        
+        requestAnimationFrame(update);
+      }
+    </script>
+  </body>
+</html>

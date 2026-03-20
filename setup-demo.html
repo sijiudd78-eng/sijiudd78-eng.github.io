@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Setup Demo Data</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { font-family: Arial, sans-serif; background: #f5f5f5; padding: 50px; }
+    .container { max-width: 600px; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>🧪 Setup Demo Data</h2>
+  <p>This will create test users and demo data for testing the app.</p>
+  
+  <button class="btn btn-primary btn-lg btn-block mb-3" onclick="setupDemoData()">
+    Create Demo Data
+  </button>
+  
+  <div id="result" class="mt-3"></div>
+  
+  <hr>
+  <h5>Normal Website Flow:</h5>
+  <ol>
+    <li>Go to <strong>login.html</strong></li>
+    <li>Login with demo user or signup new</li>
+    <li>You'll be redirected to dashboard</li>
+    <li>Navigate to Orders, VIP, etc.</li>
+  </ol>
+  
+  <h5>Quick Links:</h5>
+  <a href="login.html" class="btn btn-primary mb-2 mr-2">Login Page</a>
+  <a href="admin-new.html" class="btn btn-success mb-2 mr-2">Admin Panel</a>
+  <a href="orders.html" class="btn btn-info mb-2 mr-2">Orders</a>
+  <a href="dashboard.html" class="btn btn-warning mb-2">Dashboard</a>
+</div>
+
+<script>
+function setupDemoData() {
+  // Create demo users
+  const users = [
+    { email: 'user1@test.com', password: '123456', name: 'John Doe', balance: 500, vip: 1, createdAt: new Date().toISOString() },
+    { email: 'user2@test.com', password: '123456', name: 'Jane Smith', balance: 1000, vip: 2, createdAt: new Date().toISOString() },
+    { email: 'admin@test.com', password: 'admin123', name: 'Admin User', balance: 0, vip: 3, isAdmin: true, createdAt: new Date().toISOString() }
+  ];
+  localStorage.setItem('site_users', JSON.stringify(users));
+  
+  // Set current user to user1
+  localStorage.setItem('currentUser', JSON.stringify(users[0]));
+  localStorage.setItem('userLoggedIn', 'false');  // Set to false so they have to login
+  
+  // Initialize balances
+  localStorage.setItem('shopezene_balance', '500');
+  localStorage.setItem('shopezene_remaining', '25');
+  localStorage.setItem('shopezene_vip', '1');
+  
+  // Create sample deposits
+  const deposits = [
+    { date: new Date().toLocaleString(), email: 'user1@test.com', amount: 500, status: 'completed' },
+    { date: new Date().toLocaleString(), email: 'user2@test.com', amount: 1000, status: 'completed' }
+  ];
+  localStorage.setItem('shopezene_deposits', JSON.stringify(deposits));
+  
+  // Create sample withdrawals
+  const withdrawals = [
+    { date: new Date().toLocaleString(), email: 'user1@test.com', amount: 100, status: 'completed' }
+  ];
+  localStorage.setItem('shopezene_withdrawals', JSON.stringify(withdrawals));
+  
+  // Create sample earnings
+  const earnings = [
+    { date: new Date().toDateString(), email: 'user1@test.com', amount: 50 },
+    { date: new Date().toDateString(), email: 'user2@test.com', amount: 75 }
+  ];
+  localStorage.setItem('shopezene_earnings', JSON.stringify(earnings));
+  
+  // Clear locked orders for fresh test
+  localStorage.setItem('shopezene_locked_orders', '[]');
+  
+  document.getElementById('result').innerHTML = `
+    <div class="alert alert-success">
+      <h4>✅ Demo Data Created!</h4>
+      <p><strong>Users created:</strong></p>
+      <ul>
+        <li>user1@test.com / 123456 (Balance: $500)</li>
+        <li>user2@test.com / 123456 (Balance: $1000)</li>
+        <li>admin@test.com / admin123 (Admin)</li>
+      </ul>
+      <p><strong>Current user:</strong> user1@test.com</p>
+      <hr>
+      <p class="mb-0"><strong>Test Order Control:</strong></p>
+      <ol>
+        <li>Open admin-new.html</li>
+        <li>Go to Order Control</li>
+        <li>Lock an order for user1@test.com</li>
+        <li>Open orders.html to see the lucky order</li>
+      </ol>
+    </div>
+  `;
+}
+</script>
+
+</body>
+</html>

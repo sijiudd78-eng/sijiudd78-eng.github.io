@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON Bin Setup for Global Users</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
+    .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .btn { background: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin: 5px; }
+    .btn:hover { background: #0056b3; }
+    .success { background: #28a745; }
+    .danger { background: #dc3545; }
+    .info { background: #17a2b8; }
+    .alert { padding: 15px; margin: 10px 0; border-radius: 5px; }
+    .alert-success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+    .alert-info { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+    .alert-warning { background: #fff3cd; color: #856404; border: 1px solid #ffeaa7; }
+    .code { background: #f8f9fa; padding: 10px; border-radius: 5px; font-family: monospace; margin: 10px 0; }
+    .step { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+    .step h3 { margin-top: 0; color: #007bff; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🌍 JSON Bin Setup - Global User Management</h1>
+    <p>This guide will help you set up JSON Bin so you can see users from ALL countries.</p>
+    
+    <div class="alert alert-info">
+      <strong>📋 What This Does:</strong><br>
+      • Users from USA, UK, India, etc. all save to SAME database<br>
+      • You (Admin) can see ALL users globally<br>
+      • Real-time updates across all devices<br>
+      • 100% free with generous limits
+    </div>
+
+    <div class="step">
+      <h3>Step 1: Create JSON Bin Account</h3>
+      <p>1. Go to <a href="https://jsonbin.io" target="_blank">https://jsonbin.io</a></p>
+      <p>2. Sign up for free account</p>
+      <p>3. Verify your email</p>
+    </div>
+
+    <div class="step">
+      <h3>Step 2: Create Your First Bin</h3>
+      <p>1. Click "Create New Bin" button</p>
+      <p>2. Give it a name like: <strong>shopzene-users</strong></p>
+      <p>3. Set visibility to "Private"</p>
+      <p>4. Click "Create Bin"</p>
+    </div>
+
+    <div class="step">
+      <h3>Step 3: Get Your Credentials</h3>
+      <p>You will see TWO important codes:</p>
+      <div class="code">
+        <strong>Bin ID:</strong> Your bin ID (looks like: 65f8a1c9-9b4c-4e8d-8c7a-1a2b3e4f6a7)<br><br>
+        <strong>Master Key:</strong> Your secret key (long string of characters)
+      </div>
+    </div>
+
+    <div class="step">
+      <h3>Step 4: Update Your Code</h3>
+      <p>Replace these TWO lines in your files:</p>
+      
+      <div class="code">
+        <strong>In login.html and admin-new.html:</strong><br>
+        const JSON_BIN_ID = 'your-bin-id-here'; // Replace with your actual bin ID<br>
+        const JSON_BIN_KEY = 'your-master-key-here'; // Replace with your actual master key
+      </div>
+    </div>
+
+    <div class="step">
+      <h3>Step 5: Test Global Users</h3>
+      <p>1. Deploy updated files to Netlify</p>
+      <p>2. Have friends from different countries sign up</p>
+      <p>3. Log in as admin - you should see ALL users!</p>
+    </div>
+
+    <div class="alert alert-warning">
+      <strong>⚠️ Important:</strong> Keep your Master Key secret! Anyone with your key can access all user data.
+    </div>
+
+    <div class="alert alert-success">
+      <strong>✅ Benefits:</strong><br>
+      • See users from USA 🇺🇸, UK 🇬🇧, India 🇮🇳, etc.<br>
+      • Real-time user registration<br>
+      • Global admin control<br>
+      • Cross-device synchronization<br>
+      • Free 10,000 requests/month<br>
+      • 1GB storage
+    </div>
+
+    <h3>🔗 Quick Links</h3>
+    <p><a href="https://jsonbin.io" target="_blank" class="btn info">🚀 Go to JSON Bin</a></p>
+    <p><a href="login.html" class="btn success">🔐 Back to Login</a></p>
+    <p><a href="admin-new.html" class="btn success">⚙️ Admin Panel</a></p>
+  </div>
+</body>
+</html>
